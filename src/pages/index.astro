@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const contextSnippet = `$ mainline context --current --json
+{
+  "anti_patterns": [
+    {
+      "what": "do not remove legacy /oauth",
+      "why": "callbacks still require session state",
+      "severity": "high"
+    }
+  ],
+  "risks": ["billing migration still has duplicate-event risk"]
+}`;
+---
+
+<BaseLayout>
+  <section class="hero shell">
+    <div class="hero-copy">
+      <p class="eyebrow">Git-native intent memory</p>
+      <h1>Stop coding agents from repeating old engineering mistakes.</h1>
+      <p class="hero-lede">
+        Mainline gives AI coding agents the historical why before they edit the
+        current what: abandoned approaches, superseded decisions, reviewer
+        constraints, risks, and in-flight intent.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="/docs/">Read the docs</a>
+        <a class="button secondary" href="/blog/why-coding-agents-need-repo-memory/">Read the essay</a>
+      </div>
+      <div class="install-strip" aria-label="Install command">
+        <span>Install</span>
+        <code>curl -fsSL https://raw.githubusercontent.com/mainline-org/mainline/main/install.sh | bash</code>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Mainline context preview">
+      <div class="terminal-card">
+        <div class="window-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <pre><code>{contextSnippet}</code></pre>
+      </div>
+      <div class="intent-card">
+        <p>Intent sealed</p>
+        <h2>Replace session auth with JWT</h2>
+        <dl>
+          <div><dt>Decision</dt><dd>JWT for mobile stateless auth</dd></div>
+          <div><dt>Rejected</dt><dd>Remove OAuth middleware</dd></div>
+          <div><dt>Pin</dt><dd>refs/notes/mainline/intents</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-band">
+    <div class="shell proof-grid">
+      <div>
+        <span class="metric">0</span>
+        <p>forbidden-list violations in intent-first eval runs</p>
+      </div>
+      <div>
+        <span class="metric">9</span>
+        <p>violations from code-first agents across the same scenarios</p>
+      </div>
+      <div>
+        <span class="metric">Git</span>
+        <p>stores repo memory in refs and notes, not one vendor workspace</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <p class="eyebrow">The failure mode</p>
+      <h2>Reasonable code. Wrong historical reason.</h2>
+    </div>
+    <div class="rich-text">
+      <p>
+        A coding agent can grep the repo, inspect a TODO, and finish the
+        half-built Redis queue. That may still be the wrong move if the team
+        already abandoned Redis because replication lag caused duplicate billing
+        events.
+      </p>
+      <p>
+        Code search tells agents what exists now. Mainline records the decision
+        memory that explains what should not be repeated.
+      </p>
+    </div>
+  </section>
+
+  <section class="section shell feature-grid">
+    <article>
+      <span class="feature-index">01</span>
+      <h3>Pre-edit memory</h3>
+      <p>Agents read relevant decisions, risks, constraints, and anti-patterns before non-trivial edits.</p>
+    </article>
+    <article>
+      <span class="feature-index">02</span>
+      <h3>Review intent</h3>
+      <p>Reviewers compare the implementation against the stated why instead of inferring intent backward from a diff.</p>
+    </article>
+    <article>
+      <span class="feature-index">03</span>
+      <h3>Intent governance</h3>
+      <p>Teams can see coverage gaps, low-quality sealed intents, risky changes, and overlapping in-flight work.</p>
+    </article>
+    <article>
+      <span class="feature-index">04</span>
+      <h3>Long-term memory</h3>
+      <p>Future maintainers know which approaches were tried, abandoned, superseded, accepted, or pinned to commits.</p>
+    </article>
+  </section>
+
+  <section class="section shell workflow">
+    <div>
+      <p class="eyebrow">Agent loop</p>
+      <h2>Read prior intent. Make the change. Record new intent.</h2>
+    </div>
+    <ol>
+      <li><code>mainline context --current --json</code><span>Retrieve repo memory before edits.</span></li>
+      <li><code>mainline start "Add JWT auth"</code><span>Claim a real unit of work.</span></li>
+      <li><code>mainline append "Implemented middleware"</code><span>Record decisions, pivots, and risks.</span></li>
+      <li><code>mainline seal</code><span>Preserve the durable decision record.</span></li>
+    </ol>
+  </section>
+
+  <section class="section shell split-cards">
+    <article>
+      <h2>For solo builders</h2>
+      <p>
+        Preserve continuity between agents, branches, and future sessions. Your
+        next agent should know why the last one abandoned an approach.
+      </p>
+    </article>
+    <article>
+      <h2>For teams</h2>
+      <p>
+        Make repo truth shared before review. See proposed work, file-level
+        constraints, open risks, and intent coverage without Slack archaeology.
+      </p>
+    </article>
+  </section>
+
+  <section class="section shell final-cta">
+    <p class="eyebrow">Public alpha</p>
+    <h2>Coding agents should inherit engineering memory.</h2>
+    <p>
+      Mainline is usable today for early teams that want Git-native repo memory
+      before agent-generated changes reach review.
+    </p>
+    <div class="hero-actions">
+      <a class="button primary" href="https://github.com/mainline-org/mainline">View on GitHub</a>
+      <a class="button secondary" href="mailto:hello@usemainline.dev">Become a design partner</a>
+    </div>
+  </section>
+</BaseLayout>

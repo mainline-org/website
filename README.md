@@ -1,46 +1,32 @@
-# Mainline
+# Mainline Website
 
-**Git-native intent memory for AI-assisted engineering.**
+Astro website for Mainline, the Git-native intent memory layer for AI-assisted engineering.
 
-Mainline helps AI coding agents and human reviewers understand the historical **why** before inspecting the current **what**.
+Planned domain: `usemainline.dev`
 
-Code can show what exists now.  
-It cannot always explain which approaches were abandoned, which decisions superseded older implementations, or which constraints future changes must preserve.
+## Stack
 
-Mainline is an early project exploring a simple idea:
+- Astro
+- Markdown blog posts
+- Static output for Vercel or Cloudflare Pages
 
-> Before an agent changes code, give it the engineering intent behind the code.
+## Development
 
-## Why
+```bash
+npm install
+npm run dev
+```
 
-AI coding agents are fast, but they often lack project memory.
+## Build
 
-They may:
+```bash
+npm run build
+```
 
-- repeat an approach the team already abandoned,
-- revive an implementation that was superseded,
-- remove compatibility paths that still matter,
-- miss reviewer constraints that live outside source code,
-- step on related work already in progress.
+## Deploy
 
-Mainline records the intent behind engineering changes so future agents and humans can use it when it matters.
+This repo is configured for Vercel static deployment:
 
-## Status
-
-Mainline is currently in private dogfood and early design-partner testing.
-
-This public repository is a placeholder for:
-
-- public notes,
-- early documentation,
-- examples,
-- release updates,
-- design-partner information.
-
-The implementation will be published when it is ready for broader use.
-
-## Interested?
-
-If you or your team already use AI coding agents heavily and want to help test early versions of Mainline, feel free to follow this repository.
-
-More soon.
+```bash
+vercel --prod
+```

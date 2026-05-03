@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Mainline vs Session Memory"
+  description="Session memory captures conversations. Mainline preserves durable engineering intent for future agents and reviewers."
+>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">Comparison</p>
+    <h1>Mainline vs session memory</h1>
+    <p>
+      Transcripts are evidence. Future agents need the compact decision record.
+    </p>
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <h2>Session memory records what happened in one conversation.</h2>
+    </div>
+    <div class="rich-text">
+      <p>
+        It can preserve prompts, responses, tool calls, file snapshots, and
+        diffs. That is useful for replay, audit, rollback, and provenance.
+      </p>
+      <p>
+        But future agents usually need the durable conclusion: Redis was
+        abandoned, CSV was deprecated, OAuth middleware must stay until mobile
+        v3 sunsets, and this migration risk was accepted with a follow-up.
+      </p>
+    </div>
+  </section>
+
+  <section class="section shell split-cards">
+    <article>
+      <h2>Session memory</h2>
+      <p>High-fidelity transcript of a run. Useful as evidence after the fact.</p>
+    </article>
+    <article>
+      <h2>Mainline</h2>
+      <p>Structured intent memory attached to the repo. Useful before the next edit.</p>
+    </article>
+  </section>
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Docs - Mainline"
+  description="Install Mainline, initialize a repository, and understand the agent protocol for Git-native intent memory."
+>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">Docs</p>
+    <h1>Install once. Let agents read and write repo memory.</h1>
+    <p>
+      Mainline has a human CLI and an agent protocol. Humans inspect memory;
+      agents retrieve context before editing and record durable intent after
+      meaningful work.
+    </p>
+  </section>
+
+  <section class="section shell docs-grid">
+    <article>
+      <h2>Install</h2>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/mainline-org/mainline/main/install.sh | bash
+mainline doctor --setup</code></pre>
+      <p>The installer downloads the latest GitHub Release archive and verifies it against checksums.</p>
+    </article>
+    <article>
+      <h2>Initialize a repo</h2>
+      <pre><code>cd your-repo
+mainline init --actor-name "alice"</code></pre>
+      <p>Init writes `.mainline/config.toml`, configures Git refs, creates an actor identity, and installs agent guidance.</p>
+    </article>
+    <article>
+      <h2>Human quick start</h2>
+      <pre><code>mainline hub open
+mainline log
+mainline show &lt;intent_id&gt;
+mainline gaps</code></pre>
+      <p>Browse recent intent, inspect decisions, and find commits that still need coverage.</p>
+    </article>
+    <article>
+      <h2>Agent protocol</h2>
+      <pre><code>mainline context --current --json
+mainline start "Add JWT auth"
+mainline append "Implemented JWT middleware"
+mainline seal</code></pre>
+      <p>Agents read before writing, record meaning rather than keystrokes, and leave reviewable intent.</p>
+    </article>
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <p class="eyebrow">When context is required</p>
+      <h2>Agents call Mainline before non-trivial edits.</h2>
+    </div>
+    <div class="rich-text">
+      <p>
+        Context is required for architecture changes, refactors, migrations,
+        deletions, auth, billing, data model, permissions, release, CI, and
+        cross-file behavior changes.
+      </p>
+      <p>
+        Agents may skip Mainline only for narrow typo fixes, formatting-only
+        edits, obvious one-line syntax fixes, or read-only inspection where the
+        user explicitly asks to look at a single file.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

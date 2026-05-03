@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Mainline vs RAG"
+  description="RAG helps coding agents find similar code. Mainline helps them understand historical engineering intent before editing."
+>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">Comparison</p>
+    <h1>Mainline vs RAG</h1>
+    <p>
+      Code retrieval is useful. It is not the same thing as repo memory.
+    </p>
+  </section>
+
+  <section class="section shell comparison-table">
+    <div class="comparison-row header">
+      <span></span>
+      <span>RAG</span>
+      <span>Mainline</span>
+    </div>
+    <div class="comparison-row">
+      <span>Best at</span>
+      <span>Finding relevant code and documents</span>
+      <span>Recording decisions, risks, anti-patterns, and lifecycle</span>
+    </div>
+    <div class="comparison-row">
+      <span>Timing</span>
+      <span>Usually used during code inspection</span>
+      <span>Required before non-trivial edits</span>
+    </div>
+    <div class="comparison-row">
+      <span>Failure mode</span>
+      <span>Retrieves the abandoned Redis implementation</span>
+      <span>Explains why Redis was abandoned</span>
+    </div>
+    <div class="comparison-row">
+      <span>System of record</span>
+      <span>Vector store or vendor index</span>
+      <span>Git refs and notes owned by the repo</span>
+    </div>
+  </section>
+</BaseLayout>

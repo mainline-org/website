@@ -1,0 +1,88 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Mainline - Git-native intent memory for coding agents",
+  description = "Mainline gives AI coding agents the historical why before they edit the current what.",
+  canonicalPath = Astro.url.pathname,
+  ogImage = "/social-card.svg",
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://usemainline.dev";
+const canonical = new URL(canonicalPath, site).toString();
+const imageUrl = new URL(ogImage, site).toString();
+const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav shell" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="Mainline home">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>Mainline</span>
+        </a>
+        <div class="nav-links">
+          <a href="/docs/">Docs</a>
+          <a href="/spec/">Spec</a>
+          <a href="/blog/">Blog</a>
+          <a href="/comparisons/mainline-vs-rag/">Compare</a>
+        </div>
+        <a class="nav-cta" href="https://github.com/mainline-org/mainline">GitHub</a>
+      </nav>
+    </header>
+    <main id="content">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>
+          <a class="brand footer-brand" href="/">
+            <span class="brand-mark" aria-hidden="true">M</span>
+            <span>Mainline</span>
+          </a>
+          <p>Git-native intent memory for AI-assisted engineering.</p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/docs/">Docs</a>
+          <a href="/spec/">Spec</a>
+          <a href="/comparisons/mainline-vs-session-memory/">Session memory</a>
+        </div>
+        <div>
+          <h2>Writing</h2>
+          <a href="/blog/">Blog</a>
+          <a href="/blog/why-coding-agents-need-repo-memory/">Repo memory essay</a>
+          <a href="mailto:hello@usemainline.dev">Design partners</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+.astro/
+.ml-cache/
+.vercel/
+dist/
+node_modules/
+npm-debug.log*

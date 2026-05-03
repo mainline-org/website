@@ -1,0 +1,25 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const {
+  title,
+  subtitle,
+  description,
+  publishDate,
+  canonicalPath,
+} = Astro.props.frontmatter;
+---
+
+<BaseLayout title={title} description={description ?? subtitle} canonicalPath={canonicalPath ?? Astro.url.pathname}>
+  <article class="article shell">
+    <header class="article-header">
+      <a class="eyebrow" href="/blog/">Mainline Blog</a>
+      <h1>{title}</h1>
+      {subtitle && <p class="article-subtitle">{subtitle}</p>}
+      {publishDate && <time datetime={publishDate}>{publishDate}</time>}
+    </header>
+    <div class="article-body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
