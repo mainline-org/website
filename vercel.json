@@ -1,5 +1,6 @@
 {
   "buildCommand": "npm run build",
+  "ignoreCommand": "test \"${VERCEL_GIT_COMMIT_REF#_mainline/}\" != \"$VERCEL_GIT_COMMIT_REF\"",
   "outputDirectory": "dist",
   "framework": "astro",
   "headers": [
