@@ -1,309 +1,323 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
-title: "为什么 Coding Agents 需要 Repo Memory"
-subtitle: "代码告诉 agent 存在什么，却很少说明为什么。"
-description: "AI coding agents 可以读代码，但它们需要 repo memory，在编辑前理解被放弃的方案、已被取代的决策、风险和约束。"
+title: "为什么 AI 写代码前，得先知道项目以前踩过哪些坑"
+subtitle: "代码告诉 AI 现在有什么，但很少告诉它当时为什么这么做。"
+description: "AI coding agents 可以读代码、改代码、跑测试，但它们更需要知道团队以前踩过哪些坑、哪些方案已经放弃、哪些地方不能乱动。"
 publishDate: "2026-05-04"
 locale: "zh"
 pagePath: "/blog/why-coding-agents-need-repo-memory/"
 ---
 
-AI coding agents 正在变得很快。
+AI 写代码这件事，已经不是“补全几行代码”了。
 
-它们能搜索 repo、修改文件、运行测试、打开 pull request，也能解释一个 diff。过去一年里，它们开始不像 autocomplete，而更像真的能碰代码库的 junior engineer。
+现在的 coding agent 可以自己搜代码、改文件、跑测试、提 PR，还能解释为什么这么改。用起来越来越像一个能上手干活的初级工程师。
 
-这改变了失败模式。
+但问题也变了。
 
-旧的失败模式是：模型写了烂代码。
+以前我们担心的是：AI 写错代码。
 
-新的失败模式更隐蔽：
+现在更麻烦的问题是：
 
-> agent 写出了看似合理、但历史原因错误的代码。
+> AI 写了一段看起来很合理的代码，但它不知道这件事以前已经被团队否过。
 
-它看到当前代码、任务、半成品实现、TODO、还在工作的老 endpoint，或者一个看起来可以删除的 legacy middleware。
+这类问题最难抓。
 
-于是它修改了代码。
+因为代码本身没错，思路也说得通，测试可能还过了。但它踩的是历史坑。
 
-有时候这正是错误动作。
+## 代码只告诉你“现在是什么”
 
-不是因为 agent 不懂代码，而是因为代码没有写出原因。
+代码库里有很多东西，单看当前代码是看不出原因的。
 
-## 代码告诉你 what。它很少告诉你 why。
+比如：
 
-成熟代码库里的很多工程错误，并不是语法知识不足造成的。
+- 这个方案以前试过，后来因为线上事故放弃了。
+- 这个接口看起来过时，但老客户端还在用。
+- 这个 fallback 很丑，但某个大客户还依赖它。
+- 这个目录叫 `legacy`，但其实还不能删。
+- 这个迁移做到一半停住，是因为上次继续做会丢数据。
+- 这个 middleware 看起来多余，但 OAuth 回调还靠它保命。
 
-真正缺的是上下文：
+人类工程师为什么知道？
 
-- 这个方案试过，而且已经放弃。
-- 这个实现已经被后来的决策取代。
-- 这个丑陋 fallback 仍然有一个客户依赖。
-- 这个 endpoint 已 deprecated，但老 mobile client 仍在打流量。
-- 这个 module 看起来没人用，其实是动态加载。
-- 这个 migration 曾经因为数据丢失被暂停。
-- 这个约束存在于 reviewer 脑子里、Slack 线程里，或旧 PR comment 里。
+因为人经历过会议、事故、PR review、Slack 争论和上线回滚。
 
-人类会慢慢学到这些。
+AI agent 没有这些记忆。
 
-我们经历 design review，记得事故，问写过它的人，读六个月前那个很生气的 PR comment。我们知道 `legacy` 目录并不真的 legacy。
+它进来时看到的是当前代码、当前任务和有限上下文。它可以 grep，可以看依赖，可以读 TODO。但它不知道“为什么当时会写成这样”。
 
-agents 不知道。
+这就是问题。
 
-coding agent 通常带着一个任务和有限 context 进入 repo。它可以检查当前代码，可以 grep、index、retrieve 和 reason。但当前代码状态不等于产生它的决策历史。
+## 一个很典型的坑：Redis queue
 
-这个缺失层正在变成问题。
+想象一个项目里有一套半成品 Redis queue。
 
-## Redis 陷阱
+有 `redis.go`，有 TODO，`docker-compose.yml` 里也配了 Redis。实现看起来像是做了 60%。
 
-想象一个 repo 里有半成品 Redis queue。
+你让 agent 做：
 
-有 `redis.go`，有 TODO，`docker-compose.yml` 里也有 Redis service。实现看起来完成了 60%。
+> 把异步 billing event pipeline 补完。
 
-用户对 agent 说：
+一个只看代码的 agent 很可能会说：好，那我继续把 Redis 这条路做完。
 
-> Finish the async billing event pipeline.
+这听起来非常合理。
 
-code-first agent 会看到 Redis 路径，然后做显然合理的事情：补完 Redis 实现。
+但真实情况可能是：团队三周前已经试过 Redis，后来发现 replication lag 会造成重复扣费事件，所以决定改用 Postgres advisory locks。Redis 文件只是当时迁移中断后没来得及删。
 
-听起来没错。
+代码不会告诉 agent 这些。
 
-但也许团队三周前已经试过 Redis。也许它因为 replication lag 导致 duplicate billing events 被放弃。也许正确决策是改用 Postgres advisory locks。也许 Redis 文件只是因为 migration 中断才留在 repo 里。
+所以 agent 不是不会写代码。
 
-代码不会告诉你这些。
+它是不知道团队已经交过学费。
 
-正确答案取决于 abandoned intent，而不是当前 implementation。
+真正的问题不是：
 
-这才是今天 coding agents 真正不擅长的问题。
+> 这段代码怎么写？
 
-难点不是“写一个函数”或“修一个类型错误”。
+而是：
 
-难点是：
+> 这条路以前是不是已经走不通了？
 
-> 基于团队已经学到的东西，这个改动到底该不该做？
+## Commit、PR、Slack 都有用，但不够
 
-## 现有 artifacts 不够
+团队当然不是完全没有记录。
 
-团队已经有很多地方会出现 intent：commit messages、PR descriptions、issues、design docs、Slack threads、comments、ADRs、session transcripts、branch names。
+我们有 commit message、PR 描述、issue、设计文档、Slack 线程、代码注释、ADR、session transcript。
 
-它们都有帮助。但它们都不是 agent 在编辑前真正需要的 durable memory layer。
+这些都有价值。
 
-commit message 太短，并且面向最终状态。
+但它们有一个共同问题：未来的 agent 很难在动手前刚好读到正确那一段。
 
-PR description 是给 review 看的，不是给未来检索设计的；它很容易被跳过、重写、squash 掉，或者消失在关闭的 tab 里。
+commit message 通常太短。
 
-issue 描述要做什么，但不一定记录过程中做了哪些工程决策。
+PR 描述是给当时 reviewer 看的，不是给三个月后的 agent 检索用的。
 
-Slack 里有真相，但前提是你知道搜什么、谁说过、什么时候说的。
+issue 讲的是要做什么，不一定记录后来为什么改方向。
 
-design doc 有用，但它经常描述的是现实打脸之前的计划。
+Slack 里可能有真相，但你得知道搜什么、谁说的、什么时候说的。
 
-session recorder 会捕获一切。这既是优点，也是缺点。transcript 是证据，不是紧凑的决策记录。
+完整 session transcript 更像证据库，不适合每次改代码前通读。
 
-对 agent 来说，memory 的单位不应该是 conversation。
+所以 agent 需要的不是一大堆聊天记录。
 
-应该是 engineering intent。
+它需要一份更短、更明确的工程记忆。
 
-## Repo memory 应该包含什么
+一句话说：
 
-有用的 repo memory record 应该回答几个能长期保留的问题：
+> 未来再碰这块代码前，必须先知道什么？
+
+## Repo memory 应该记什么
+
+我理解的 repo memory，不是流水账。
+
+它应该记录那些以后还会有用的东西：
 
 - 为什么这项工作存在？
-- 团队做了什么决策？
-- 哪些替代方案被拒绝？
-- 接受了哪些风险？
-- 未来 agent 应该避免哪些 anti-patterns？
-- 影响哪些文件或 subsystem？
-- 这个 intent 是 merged、abandoned、superseded，还是 reverted？
-- 哪些 commits 实现了它？
+- 当时做了什么决定？
+- 哪些方案被试过又放弃了？
+- 哪些风险是接受过的？
+- 哪些事未来 agent 不能再做？
+- 影响哪些文件和模块？
+- 这件事后来是合并了、放弃了、被取代了，还是回滚了？
+- 最后对应到哪些 commit？
 
-这不是日记，也不是 productivity dashboard，更不是 AI session 的完整录屏。
+这不是管理报表。
 
-它是工程记忆里耐久的部分：下周、下个月、下一次 agent 试图修改同一区域时仍然有用的部分。
+也不是用来统计谁用了多少 AI。
 
-## Agents 需要在编辑前获得 memory
+它的作用很简单：让下一个人、下一个 agent、下个月的自己，不用重新踩一遍同样的坑。
 
-大多数开发工具都是事后展示 context。
+## 关键时刻是在“改之前”
 
-PR description 解释 diff，但代码已经改完了。code review 评论结果，但 branch 已经存在。session replay 帮你事后检查 agent 做过什么。
+很多工具都是事后解释。
 
-最有价值的时刻更早。
+PR 描述是在代码改完后写的。
 
-在 agent 编辑之前。
+Code review 是 branch 已经存在后发生的。
 
-在它删除 fallback、复活 abandoned approach、给 deprecated endpoint 加字段，或启动第二个会冲突的 migration 之前。
+Session replay 是 agent 已经干完活之后拿来复盘的。
 
-agent 应该能问：
+但最有价值的时刻，其实是更早：
 
-> 在我碰这块代码之前，这个 repo 有什么我必须知道的？
+在 agent 删除 fallback 之前。
 
-这就是缺失的 primitive。
+在它复活一条已经放弃的 Redis 路线之前。
 
-叫 repo memory、intent memory 或 agent context protocol 都可以。
+在它给 deprecated API 加新字段之前。
 
-关键是它必须存在于 diff 之前。
+在它启动一个会和别人冲突的 migration 之前。
 
-## 为什么必须 Git-native
+agent 应该先问一句：
 
-如果 repo memory 很重要，它就不应该只存在于某个 vendor 的 chat history。
+> 我碰这块代码前，这个 repo 里有没有什么旧账要看？
 
-repo 的工程记忆应该属于 repo。
+这就是 Mainline 想补上的东西。
 
-这意味着它应该是 portable、inspectable、versioned、local-first、agent-agnostic，并且不依赖 SaaS 账号。
+## 为什么要放在 Git 里
 
-Git 是自然的 substrate。
+如果这份记忆很重要，它就不应该只放在某个 AI 工具的聊天记录里。
 
-开发者已经把 Git 当作代码的 system of record。团队已经通过 Git fetch、push、branch、review、merge 和 audit。如果 memory 绑定到 repo，未来 agents 和 humans 无论使用哪个 coding assistant，都能读到它。
+今天你用 Cursor，明天可能换 Claude Code，后天可能用 Codex、Copilot、Windsurf，或者公司内部 agent。
 
-这对快速变化的 agent 市场尤其重要。
+工具会变。
 
-今天团队可能用 Cursor，明天可能用 Claude Code，另一个团队可能用 Codex、Copilot、Windsurf、Devin 或内部 agent。
+但 repo 应该拥有自己的历史。
 
-如果 memory 在一个 agent vendor 里，repo 就依赖那个 vendor 的 context layer。
+所以 Mainline 选择把工程记忆放在 Git 里：refs 和 notes。
 
-如果 memory 在 Git 里，repo 拥有自己的历史。
+这样它是本地优先的、可检查的、可迁移的，也不绑死某一个 SaaS。
 
-## RAG 不够
+简单说：
 
-Code retrieval 帮 agent 找相关文件。
+> 代码跟着 Git 走，代码背后的原因也应该跟着 Git 走。
 
-它不会告诉 agent 某个方案已经被放弃。
+## RAG 不解决这个问题
 
-Grep 可以验证现在存在什么。
+RAG 和代码检索当然有用。
 
-它不会解释哪个决策取代了旧实现。
+它能帮 agent 找到相关文件。
 
-Static analysis 可以理解依赖。
+但它通常回答的是：
 
-它不会捕获 reviewer 约束、事故教训或 rejected alternatives。
+> 哪段代码可能相关？
 
-好的 agent workflow 应该更像：
+它很难回答：
 
-```bash
-read prior intent
-inspect current code
-make the change
-record new intent
-```
+> 这段代码背后的路线，团队是不是已经否过？
 
-而不是：
+grep 可以告诉你 Redis 文件存在。
 
-```bash
-grep everything
-guess why it exists
-edit optimistically
-hope review catches it
-```
+Mainline 要告诉你的是：Redis 这条路以前为什么被放弃。
 
-缺的不是更多代码搜索。
+这不是更多搜索能完全解决的问题。
 
-缺的是结构化 engineering memory。
+这是结构化工程记忆的问题。
 
-## Session memory 也不够
+## Session memory 也不是最终答案
 
-Session memory 会记录 prompts、responses、tool calls、file snapshots 和 diffs。它对 replay、audit、rollback 和 provenance 很有用。
+把完整对话都录下来，当然有用。
 
-但未来 agent 通常不需要整段 session。
+出问题时可以回放，可以审计，可以看 agent 当时怎么想。
 
-它需要 durable conclusion：
+但未来 agent 通常不需要读完整对话。
 
-- 我们试过 Redis，并且放弃了。
-- 我们选择 JWT 而不是 sessions，因为 mobile clients 需要 stateless auth。
-- OAuth middleware 要保留到 mobile v3 sunset。
-- CSV 已 deprecated，只改 Parquet。
-- 这个 migration risk 被接受，并加了 follow-up。
+它需要的是结论：
 
-完整 transcript 是证据，但太吵，不适合作为未来编辑默认读取的 memory substrate。
+- Redis 试过，放弃了。
+- JWT 是为了移动端无状态认证。
+- OAuth middleware 先别删，mobile v3 退场前还要用。
+- CSV 已经 deprecated，新字段只加到 Parquet。
+- 这个 migration 风险接受了，但留了 follow-up。
 
-agents 需要更小、更有意图的记录。
+完整 transcript 是证据。
 
-它们需要 why 的记录。
+Repo memory 是行动前要看的摘要。
 
-## Review loop 也会改变
+两者不是一回事。
 
-Repo memory 不只是给 agents。
+## Review 也会更清楚
 
-它也改变 human review。
+今天 review AI 生成的 PR，经常像猜谜。
 
-今天 reviewer 常常先读 diff，再倒推 intent：
+reviewer 会问：
 
-> 为什么碰这个文件？为什么这样设计？知道旧约束吗？这个风险是有意接受的吗？是不是撤销了上个月的决策？
+> 它为什么碰这个文件？
+> 它知道旧约束吗？
+> 它是不是把上个月刚否掉的方案又捡回来了？
+> 这个风险是有意接受的，还是它根本没意识到？
 
-有 intent memory 后，review 可以从 why 开始：
+有了 intent memory，review 可以先看“为什么”：
 
-> 这个 PR 是为了替换 legacy refresh-token flow。agent 看到了不能删除 OAuth middleware 的历史决策。它声明了 backward-compatibility risk。它避开了 abandoned Redis queue path。现在 review 实现是否符合 intent。
+> 这次改动是为了替换旧 refresh-token flow。
+> agent 已经看到 OAuth middleware 不能删。
+> 它明确避开了 Redis queue 这条弃路。
+> 它记录了兼容性风险。
 
-这把 review 从“猜作者意图”变成“验证实现是否符合 stated intent”。
+然后 reviewer 再看代码有没有做到。
 
-当 AI-generated PR 越来越多，这个区别会很重要。
+这比从 diff 里倒推意图要靠谱得多。
 
-## 我们在构建什么
+## Mainline 在做什么
 
-我们在构建 Mainline：面向 coding agents 的 Git-native memory layer。
+Mainline 做的事很克制：
 
-Mainline 把 engineering intent 记录成附着在 repo 上的结构化 records。agents 可以在编辑前读取历史决策、风险、anti-patterns、abandoned approaches 和 superseded decisions。完成有意义的工作后，agent 再写回新的 intent，让下一个 agent 也有记忆。
+它不是替代 Git。
 
-目标不是替代 Git，不是替代 PR，也不是记录 AI session 的每个 token。
+不是替代 PR。
 
-目标更简单：
+不是录下 AI session 的每个 token。
 
-> 在 coding agents 改当前 what 之前，给它们历史上的 why。
+它只想做一件事：
 
-一个典型 agent loop 应该像这样：
+> 在 agent 改代码前，把这个 repo 里相关的工程记忆交给它。
+
+一个典型流程大概是：
 
 ```bash
 mainline context --current --json
-# read relevant prior intent before non-trivial edits
+# 改之前先读历史 intent
 
 mainline start "Add JWT auth"
-# claim the work
+# 开始一项真实工作
 
 mainline append "Implemented JWT middleware"
-# record meaningful progress
+# 记录关键进展和风险
 
 mainline seal
-# preserve the durable decision record
+# 把这次为什么这么做留给未来
 ```
 
-人类不应该背这个 protocol。agent 应该自动运行它。
+人不用每天背这些命令。
 
-人类主要看到结果：recent intents、important decisions、open risks、anti-patterns、files with inherited constraints、PRs missing intent，以及代码背后的历史原因。
+理想情况是 agent 自动按这个流程走。
 
-agent 写 memory。repo 保存 memory。reviewer 读取 memory。
+人主要看结果：最近有哪些 intent、哪些决策重要、哪些风险没关、哪些文件有历史约束、哪些 commit 还缺解释。
 
-## 这不是什么
+agent 写记忆。
 
-Mainline 不是 productivity dashboard。
+repo 保存记忆。
 
-我们不认为未来应该按 intent 数量、prompt 数量或 AI-generated code 数量给开发者排名。
+reviewer 读取记忆。
 
-重点不是 surveillance。
+## 这不是监控工具
 
-重点是 continuity。
+Mainline 不是拿来统计谁用了多少 AI、谁写了多少 prompt、谁 sealed 了多少 intent。
 
-Mainline 也不是 design docs、PRs、issues、RAG、grep 或 session history 的替代品。它们仍然有用。
+那不是重点。
 
-Mainline 是 connective tissue：未来 agents 和 humans 在改代码前应该取回的 durable engineering intent。
+重点是连续性。
 
-## 为什么是现在
+一个真实项目跑久了，最贵的东西不是代码量，而是那些“当时为什么这么做”的上下文。
 
-一年前，这个问题只是烦人。
+这些上下文如果只留在人脑、Slack 和某个 agent 的聊天框里，很快就会断。
 
-很快它会变成结构性问题。
+Mainline 想把它留在 repo 里。
 
-随着 coding agents 更强，团队会运行更多 agents，让它们碰更大的 repos、更老的系统、更敏感的代码区域。它们会开更多 PR，做更多看似合理的改动。
+## 为什么现在需要
 
-危险的正是 plausible changes。
+因为 coding agents 正在变得越来越能干。
 
-语法错误很容易抓。
+它们会改更大的代码库，碰更老的系统，处理更敏感的模块，开更多 PR。
 
-但复活 abandoned approach、删除 legacy constraint、同时更新 deprecated 和 current API，或启动和另一个 migration 冲突的新 migration，都更难发现。
+真正危险的不是一眼能看出的烂代码。
 
-agent 不需要更多 confidence。
+真正危险的是“看起来很合理”的改动：
 
-它需要 memory。
+- 合理地删掉一个其实还不能删的 fallback。
+- 合理地补完一条以前已经试废的技术路线。
+- 合理地同时修改 deprecated API 和新 API。
+- 合理地启动一个和别人冲突的 migration。
 
-## 未来的 repo 会有 memory
+这些改动很像真的。
 
-未来，一个严肃 repo 不只会有：
+所以更难发现。
+
+agent 不只是需要更强的模型。
+
+它需要继承项目记忆。
+
+## 未来的 repo 会记得“为什么”
+
+以后一个认真使用 AI agents 的 repo，可能不只会有：
 
 ```text
 README.md
@@ -312,16 +326,22 @@ AGENTS.md
 .github/
 ```
 
-它还会有 durable memory layer，供 agents 查询。
+它还会有一层项目记忆。
 
-在 coding agent 修改 auth code 前，它应该知道历史 auth decisions。在它修改 billing 前，它应该知道 abandoned billing approaches。在它碰 migration 前，它应该知道 unresolved migration risks。在它删除看起来 dead 的东西前，它应该知道团队是否故意保留了它。
+agent 改 auth 前，先知道 auth 的历史决策。
 
-这份 memory 应该 open、portable、Git-native，并且由 repo 拥有。
+agent 改 billing 前，先知道 billing 以前哪些方案试过。
 
-这就是我们用 Mainline 探索的方向。
+agent 删代码前，先知道这东西是不是真的没用了。
 
-如果你正在真实代码库里运行 coding agents，并且遇到过这个问题，我们想聊聊。
+agent 做 migration 前，先知道还有哪些风险没关。
 
-我们在寻找 design partners：已经把 AI agents 用在非平凡工程工作里，并希望 repo 记住决策为什么发生的团队。
+这份记忆应该开放、可迁移、Git-native，并且属于 repo 自己。
 
-**Mainline 面向这样一种团队：他们相信 coding agents 不应该只读代码，还应该继承工程记忆。**
+这就是 Mainline 在探索的方向。
+
+如果你已经在真实项目里用 AI agents 写代码，并且遇到过“上下文断了”的问题，我们很想聊聊。
+
+我们正在找 design partners：已经把 AI agents 用进非平凡工程流程，并且希望 repo 记住“为什么”的团队。
+
+**Mainline 给这样的团队用：不满足于让 AI 只读代码，而是希望 AI 继承项目记忆。**
