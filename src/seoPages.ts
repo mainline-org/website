@@ -157,10 +157,10 @@ export const seoPages: Record<SeoPageKind, Record<Locale, SeoPageContent>> = {
     },
     es: {
       path: "/use-cases/repo-memory-for-coding-agents/",
-      title: "Qué es repo memory para coding agents | Mainline",
+      title: "¿Qué es repo memory para coding agents? | Mainline",
       description: "Repo memory da a los AI coding agents contexto histórico antes de editar código.",
       eyebrow: "Definición",
-      heading: "Qué es repo memory para coding agents",
+      heading: "¿Qué es repo memory para coding agents?",
       intro: "Repo memory es el contexto de ingeniería que un agente debe leer antes de cambiar un codebase: decisiones, enfoques abandonados, riesgos, restricciones y trabajo en curso.",
       sections: [
         {
@@ -202,7 +202,7 @@ export const seoPages: Record<SeoPageKind, Record<Locale, SeoPageContent>> = {
         code: "mainline context --current --json",
       },
       related: [
-        { label: "Por qué los Coding Agents Necesitan Memoria del Repo", href: "/blog/why-coding-agents-need-repo-memory/" },
+        { label: "Por qué los coding agents necesitan memoria del repo", href: "/blog/why-coding-agents-need-repo-memory/" },
         { label: "Mainline vs RAG", href: "/compare/rag/" },
         { label: "Mainline Intent Record Spec", href: "/spec/" },
       ],
@@ -474,7 +474,7 @@ export const seoPages: Record<SeoPageKind, Record<Locale, SeoPageContent>> = {
       ],
       callout: {
         label: "Pregunta de review",
-        heading: "La implementación cumplió el intent?",
+        heading: "¿La implementación cumplió el intent?",
         body: "Mainline convierte AI PR review de adivinar intent a verificar si el diff respetó el intent registrado.",
         code: "mainline check --submit\nmainline show <intent_id>",
       },
