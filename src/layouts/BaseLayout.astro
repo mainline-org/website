@@ -12,21 +12,50 @@ import {
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string[] | string;
+  robots?: string;
+  author?: string;
   canonicalPath?: string;
   locale?: Locale;
   pagePath?: string;
   ogImage?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
+  twitterSite?: string;
+  twitterCreator?: string;
   availableLocales?: Locale[];
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
-  title = "Mainline - Git-native memory for coding agents",
-  description = "Mainline helps AI coding agents understand the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
+  title = "Mainline - Repo memory for coding agents",
+  description = "Mainline gives AI coding agents Git-native repo memory before edits: prior decisions, abandoned approaches, risks, and reviewer constraints.",
+  keywords = [
+    "Mainline",
+    "coding agent memory",
+    "repo memory for AI agents",
+    "Git-native memory",
+    "engineering intent memory",
+    "agent context protocol",
+    "AI coding agents",
+    "AI PR review",
+    "intent records",
+    "developer tools",
+  ],
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  author = "Mainline maintainers",
   locale = defaultLocale,
   pagePath = Astro.url.pathname.replace(/^\/(zh|es)(?=\/|$)/, "") || "/",
   canonicalPath = localizedPath(locale, pagePath),
   ogImage = "/og-image.png",
+  ogTitle,
+  ogDescription,
+  twitterTitle,
+  twitterDescription,
+  twitterSite = "@mainline_sh",
+  twitterCreator = "@mainline_sh",
   availableLocales = [...localeCodes],
   jsonLd = [],
 } = Astro.props;
@@ -35,8 +64,18 @@ const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://mainline.sh";
 const canonical = new URL(canonicalPath, site).toString();
 const imageUrl = new URL(ogImage, site).toString();
 const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
+const keywordContent = Array.isArray(keywords) ? keywords.join(", ") : keywords;
+const openGraphTitle = ogTitle ?? pageTitle;
+const openGraphDescription = ogDescription ?? description;
+const xTitle = twitterTitle ?? pageTitle;
+const xDescription = twitterDescription ?? description;
 const ui = uiCopy[locale];
 const htmlLang = locales[locale].htmlLang;
+const ogLocales: Record<Locale, string> = {
+  en: "en_US",
+  zh: "zh_CN",
+  es: "es_ES",
+};
 const languageLinks = availableLocales.map((code) => ({
   code,
   label: locales[code].shortLabel,
@@ -53,18 +92,28 @@ const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywordContent} />
+    <meta name="robots" content={robots} />
+    <meta name="author" content={author} />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Mainline" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={openGraphTitle} />
+    <meta property="og:description" content={openGraphDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:locale" content={ogLocales[locale]} />
+    {availableLocales.filter((code) => code !== locale).map((code) => (
+      <meta property="og:locale:alternate" content={ogLocales[code]} />
+    ))}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:site" content={twitterSite} />
+    <meta name="twitter:creator" content={twitterCreator} />
+    <meta name="twitter:title" content={xTitle} />
+    <meta name="twitter:description" content={xDescription} />
     <meta name="twitter:image" content={imageUrl} />
     {languageLinks.map((link) => (
       <link rel="alternate" hreflang={link.hreflang} href={new URL(link.href, site).toString()} />

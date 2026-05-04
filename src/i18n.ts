@@ -145,8 +145,12 @@ export const uiCopy: Record<Locale, {
 
 export const homeCopy = {
   en: {
-    metaTitle: "Mainline - Git-native memory for coding agents",
-    metaDescription: "Mainline helps AI coding agents understand the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
+    metaTitle: "Mainline - Repo memory for coding agents",
+    metaDescription: "Mainline gives AI coding agents Git-native repo memory before edits: prior decisions, abandoned approaches, risks, and reviewer constraints.",
+    ogTitle: "Mainline: Repo Memory for AI",
+    ogDescription: "Git-native repo memory before AI coding agents edit code.",
+    twitterTitle: "Mainline: Git-native repo memory for coding agents",
+    twitterDescription: "Repo memory before the diff: prior decisions, risks, and constraints.",
     eyebrow: "Git-native memory for coding agents",
     heading: "Repo memory before the diff.",
     lede: "Mainline gives coding agents the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
@@ -244,6 +248,10 @@ export const homeCopy = {
   zh: {
     metaTitle: "Mainline - 让 AI 写代码前先知道前因后果",
     metaDescription: "Mainline 把代码库里的关键决策、踩坑记录和禁区留在 Git 里，让下一个 AI agent 改代码前先看到。",
+    ogTitle: "Mainline：AI 项目记忆",
+    ogDescription: "让 AI agent 改代码前先看到项目历史和禁区。",
+    twitterTitle: "Mainline：给 coding agents 用的 Git 原生项目记忆",
+    twitterDescription: "先别出 diff，先看项目记忆、历史决策、风险和禁区。",
     eyebrow: "给 AI agent 的项目记忆",
     heading: "先别出 diff，先看项目记忆。",
     lede: "代码只能告诉 AI 现在长什么样。Mainline 会把当时为什么这么做、哪些方案已经试废、哪些地方不能乱删，提前摆到 agent 面前。",
@@ -341,6 +349,10 @@ export const homeCopy = {
   es: {
     metaTitle: "Mainline - Memoria nativa en Git para coding agents",
     metaDescription: "Mainline da a los agentes de código el porqué histórico antes de editar lo que existe hoy.",
+    ogTitle: "Mainline: memoria para agentes",
+    ogDescription: "Memoria del repo antes de que los agentes editen código.",
+    twitterTitle: "Mainline: memoria del repo nativa en Git para coding agents",
+    twitterDescription: "Memoria antes del diff: decisiones, riesgos y restricciones.",
     eyebrow: "Memoria nativa en Git para coding agents",
     heading: "Memoria del repo antes del diff.",
     lede: "Mainline da a los agentes de código el porqué histórico antes de editar: enfoques abandonados, decisiones superadas, restricciones de review, riesgos e intenciones en curso.",

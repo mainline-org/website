@@ -12,6 +12,34 @@ export const organizationJsonLd = {
   ],
 };
 
+export const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Mainline",
+  alternateName: "Mainline.sh",
+  url: siteUrl,
+  inLanguage: "en",
+  description:
+    "Mainline gives AI coding agents Git-native repo memory before edits: prior decisions, abandoned approaches, risks, and reviewer constraints.",
+  keywords: [
+    "coding agent memory",
+    "repo memory for AI agents",
+    "Git-native memory for coding agents",
+    "engineering intent memory",
+    "agent context protocol",
+  ],
+  publisher: {
+    "@type": "Organization",
+    name: "Mainline",
+    url: siteUrl,
+  },
+  about: [
+    { "@type": "Thing", name: "coding agent memory" },
+    { "@type": "Thing", name: "repo memory for AI agents" },
+    { "@type": "Thing", name: "engineering intent memory" },
+  ],
+};
+
 export const softwareJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -30,8 +58,10 @@ export const softwareJsonLd = {
     price: "0",
     priceCurrency: "USD",
   },
+  keywords:
+    "coding agent memory, repo memory for AI agents, Git-native memory, engineering intent memory, agent context protocol",
   description:
-    "Mainline is Git-native memory for coding agents. It gives AI coding agents repo memory before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
+    "Mainline gives AI coding agents Git-native repo memory before edits: prior decisions, abandoned approaches, risks, and reviewer constraints.",
 };
 
 export function webPageJsonLd(input: {
