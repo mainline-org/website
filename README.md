@@ -1,8 +1,8 @@
 # Mainline Website
 
-Website: https://mainline.sh
-Essay: https://mainline.sh/blog/why-coding-agents-need-repo-memory
-Spec: https://mainline.sh/spec
+* Website: https://mainline.sh
+* Essay: https://mainline.sh/blog/why-coding-agents-need-repo-memory
+* Spec: https://mainline.sh/spec
 
 Astro website for Mainline, the Git-native intent memory layer for AI-assisted engineering.
 
