@@ -313,14 +313,14 @@ export const homeCopy = {
       heading: "Código razonable. Razón histórica equivocada.",
       paragraphs: [
         "Un agente puede buscar en el repo, ver un TODO y terminar una cola Redis a medio hacer. Pero si el equipo ya abandonó Redis por eventos duplicados de billing, esa es la acción equivocada.",
-        "La búsqueda de código dice qué existe ahora. Mainline registra la memoria de decisiones que explica que no debe repetirse.",
+        "La búsqueda de código dice qué existe ahora. Mainline registra la memoria de decisiones que explica qué no debe repetirse.",
       ],
     },
     features: [
       ["Memoria antes de editar", "Los agentes leen decisiones, riesgos, restricciones y anti-patterns antes de cambios no triviales."],
       ["Intent para review", "Reviewers comparan la implementación contra el porqué declarado, no contra una intención inferida desde el diff."],
       ["Governance de intent", "Los equipos ven coverage gaps, intents de baja calidad, cambios riesgosos y trabajo en curso que se solapa."],
-      ["Memoria a largo plazo", "Futuros maintainers saben que se intentó, que se abandonó, que se sustituyó y que commits lo implementaron."],
+      ["Memoria a largo plazo", "Futuros maintainers saben qué se intentó, qué se abandonó, qué se sustituyó y qué commits lo implementaron."],
     ],
     workflow: {
       eyebrow: "Loop del agente",
@@ -515,7 +515,7 @@ export const blogCopy = {
     heading: "Escritura sobre memoria del repo para coding agents.",
     intro: "Por qué los agentes necesitan contexto histórico de ingeniería antes de editar código de producción.",
     category: "Ensayo",
-    postTitle: "Por qué los Coding Agents Necesitan Memoria del Repo",
+    postTitle: "Por qué los coding agents necesitan memoria del repo",
     postDescription: "El código dice qué existe. No dice por qué.",
   },
 } as const;

@@ -1,7 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
-title: "Por qué los Coding Agents Necesitan Memoria del Repo"
-metaTitle: "Por qué los Coding Agents Necesitan Memoria del Repo | Mainline"
+title: "Por qué los coding agents necesitan memoria del repo"
+metaTitle: "Por qué los coding agents necesitan memoria del repo | Mainline"
 subtitle: "El código dice qué existe. No dice por qué."
 description: "Los AI coding agents pueden leer código, pero necesitan memoria del repo para entender enfoques abandonados, decisiones superadas, riesgos y restricciones antes de editar."
 publishDate: "2026-05-04"
@@ -45,7 +45,7 @@ Nacen de contexto perdido:
 
 Los humanos aprenden estas cosas lentamente.
 
-Pasamos por design reviews. Recordamos el incidente. Preguntamos a  quién lo construyó. Leemos el comentario enojado de hace seis meses. Sabemos que el directorio `legacy` no es realmente legacy.
+Pasamos por design reviews. Recordamos el incidente. Preguntamos a quién lo construyó. Leemos el comentario enojado de hace seis meses. Sabemos que el directorio `legacy` no es realmente legacy.
 
 Los agentes no.
 
@@ -75,7 +75,7 @@ La respuesta correcta depende de intent abandonado, no de la implementación act
 
 Ese es el tipo de problema donde los coding agents fallan hoy.
 
-No es "escribe una función", "arregla un type error" o "encuentra donde está definido este símbolo".
+No es "escribe una función", "arregla un type error" o "encuentra dónde está definido este símbolo".
 
 El problema duro es:
 
@@ -93,7 +93,7 @@ PR descriptions están escritas para review, no para recuperación futura. Es f�
 
 Issues describen trabajo pendiente, pero no siempre las decisiones tomadas durante el camino.
 
-Slack tiene la verdad, pero solo si sabes que buscar,  quién lo dijo y cuando.
+Slack tiene la verdad, pero solo si sabes qué buscar, quién lo dijo y cuándo.
 
 Design docs son útiles cuando existen, pero suelen describir el plan antes de que la realidad lo contradiga.
 
@@ -101,7 +101,7 @@ Session recorders capturan todo. Esa es su fuerza y su debilidad. Un transcript 
 
 Para agentes, la unidad de memoria no debería ser la conversación.
 
-Deberia ser el engineering intent.
+Debería ser el engineering intent.
 
 ## Qué debería contener la memoria del repo
 
@@ -113,14 +113,14 @@ Un buen record de repo memory debería responder preguntas duraderas:
 - ¿Qué riesgos fueron aceptados?
 - ¿Qué anti-patterns deben evitar futuros agentes?
 - ¿Qué archivos o subsistemas toca?
-- Este intent fue merged, abandoned, superseded o reverted?
+- ¿Este intent fue merged, abandoned, superseded o reverted?
 - ¿Qué commits lo implementaron?
 
 No es un diario.
 
 No es un productivity dashboard.
 
-No es una grabacion completa de lo que dijo o hizo el agente.
+No es una grabación completa de lo que dijo o hizo el agente.
 
 Es la parte duradera de la memoria de ingeniería: lo que debería importar la semana que viene, el mes que viene y la próxima vez que un agente toque la misma zona.
 
@@ -140,9 +140,9 @@ El agente debería poder preguntar:
 
 > ¿Qué debo saber sobre este repo antes de tocar esta parte del código?
 
-Ese es el primitive que falta.
+Esa es la primitiva que falta.
 
-Llameslo repo memory, intent memory o agent context protocol.
+Llámalo repo memory, intent memory o agent context protocol.
 
 Lo importante es que exista antes del diff.
 
@@ -160,7 +160,7 @@ Los developers ya confían en Git como system of record del código. Los equipos
 
 Esto importa porque el mercado de agentes se mueve rápido.
 
-Hoy un equipo puede usar Cursor. Manana Claude Code. Otro puede usar Codex, Copilot, Windsurf, Devin o un agente interno.
+Hoy un equipo puede usar Cursor. Mañana Claude Code. Otro puede usar Codex, Copilot, Windsurf, Devin o un agente interno.
 
 Si la memoria vive dentro de un vendor, el repo depende de ese vendor.
 
@@ -174,7 +174,7 @@ No dice si un enfoque fue abandonado.
 
 Grep verifica que existe ahora.
 
-No explica que decisión superó una implementación anterior.
+No explica qué decisión superó una implementación anterior.
 
 Static analysis ayuda con dependencias.
 
@@ -208,7 +208,7 @@ Session memory captura prompts, respuestas, tool calls, snapshots y diffs. Sirve
 
 Pero futuros agentes normalmente no necesitan la sesión completa.
 
-Necesitan la conclusion duradera:
+Necesitan la conclusión duradera:
 
 - Probamos Redis y lo abandonamos.
 - Elegimos JWT sobre sessions porque mobile necesita auth stateless.
@@ -216,9 +216,9 @@ Necesitan la conclusion duradera:
 - CSV está deprecated; Parquet es el camino.
 - Aceptamos este riesgo de migración y agregamos un follow-up.
 
-El transcript completo puede ser evidencia. Pero es demásiado ruidoso para ser la memoria por defecto antes de futuras ediciones.
+El transcript completo puede ser evidencia. Pero es demasiado ruidoso para ser la memoria por defecto antes de futuras ediciones.
 
-Los agentes necesitan algo más pequeno y más intencional.
+Los agentes necesitan algo más pequeño y más intencional.
 
 Necesitan el registro del por qué.
 
@@ -230,7 +230,7 @@ También cambia el review humano.
 
 Hoy los reviewers leen un diff e infieren intent hacia atrás:
 
-> Por qué tocaron este archivo? Por qué este diseño? Sabían de la restricción vieja? Este riesgo fue intencional? Están deshaciendo una decisión del mes pasado?
+> ¿Por qué tocaron este archivo? ¿Por qué este diseño? ¿Sabían de la restricción vieja? ¿Este riesgo fue intencional? ¿Están deshaciendo una decisión del mes pasado?
 
 Con intent memory, el review puede empezar desde el por qué:
 
@@ -254,7 +254,7 @@ No es grabar cada token de una sesión de IA.
 
 El objetivo es más simple:
 
-> Dar a los coding agents el por qué histórico antes de cambiar lo que existe hoy.
+> Dar a los coding agents el porqué histórico antes de cambiar lo que existe hoy.
 
 Un loop típico debería sentirse así:
 
@@ -282,7 +282,7 @@ El agente escribe memoria. El repo guarda memoria. El reviewer lee memoria.
 
 Mainline no es un productivity dashboard.
 
-No creemos que el futuro correcto sea rankear developers por cuantos intents crearon, cuantos prompts escribieron o cuanto código generado por IA enviaron.
+No creemos que el futuro correcto sea rankear developers por cuántos intents crearon, cuántos prompts escribieron o cuánto código generado por IA enviaron.
 
 El punto no es vigilancia.
 
