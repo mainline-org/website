@@ -473,6 +473,7 @@ h1 {
 .architecture-grid article,
 .seo-grid article,
 .install-grid article {
+  min-width: 0;
   padding: 24px;
 }
 
@@ -666,7 +667,10 @@ h1 {
 }
 
 .docs-grid pre {
+  max-width: 100%;
+  min-width: 0;
   margin-bottom: 18px;
+  overflow-x: auto;
   padding: 18px;
   font-size: 0.9rem;
 }
