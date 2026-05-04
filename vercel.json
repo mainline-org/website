@@ -7,6 +7,8 @@
     { "source": "/comparisons/mainline-vs-rag/", "destination": "/compare/rag/", "permanent": true },
     { "source": "/comparisons/mainline-vs-session-memory", "destination": "/compare/session-memory/", "permanent": true },
     { "source": "/comparisons/mainline-vs-session-memory/", "destination": "/compare/session-memory/", "permanent": true },
+    { "source": "/docs/copilot", "destination": "/docs/github-copilot/", "permanent": true },
+    { "source": "/docs/copilot/", "destination": "/docs/github-copilot/", "permanent": true },
     { "source": "/zh/comparisons/mainline-vs-rag", "destination": "/zh/compare/rag/", "permanent": true },
     { "source": "/zh/comparisons/mainline-vs-rag/", "destination": "/zh/compare/rag/", "permanent": true },
     { "source": "/zh/comparisons/mainline-vs-session-memory", "destination": "/zh/compare/session-memory/", "permanent": true },

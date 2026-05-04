@@ -56,6 +56,8 @@ export const uiCopy: Record<Locale, {
     install: string;
     eval: string;
     glossary: string;
+    changelog: string;
+    pricing: string;
     sessionMemory: string;
     repoMemoryEssay: string;
     designPartners: string;
@@ -80,6 +82,8 @@ export const uiCopy: Record<Locale, {
       install: "Install",
       eval: "Agent Memory Eval",
       glossary: "Glossary",
+      changelog: "Changelog",
+      pricing: "Pricing",
       sessionMemory: "Session memory",
       repoMemoryEssay: "Repo memory essay",
       designPartners: "Design partners",
@@ -104,6 +108,8 @@ export const uiCopy: Record<Locale, {
       install: "安装",
       eval: "Agent Memory Eval",
       glossary: "术语表",
+      changelog: "更新日志",
+      pricing: "价格",
       sessionMemory: "Session memory",
       repoMemoryEssay: "Repo memory 文章",
       designPartners: "设计伙伴",
@@ -128,6 +134,8 @@ export const uiCopy: Record<Locale, {
       install: "Instalar",
       eval: "Agent Memory Eval",
       glossary: "Glosario",
+      changelog: "Changelog",
+      pricing: "Precios",
       sessionMemory: "Memoria de sesión",
       repoMemoryEssay: "Ensayo sobre memoria del repo",
       designPartners: "Design partners",
@@ -140,8 +148,8 @@ export const homeCopy = {
     metaTitle: "Mainline - Git-native memory for coding agents",
     metaDescription: "Mainline helps AI coding agents understand the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
     eyebrow: "Git-native memory for coding agents",
-    heading: "Git-native memory for coding agents",
-    lede: "Stop AI agents from repeating old engineering mistakes. Mainline gives coding agents repo memory before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
+    heading: "Repo memory before the diff.",
+    lede: "Mainline gives coding agents the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
     primaryCta: "Read the docs",
     secondaryCta: "Read the essay",
     install: "Install",
@@ -151,26 +159,39 @@ export const homeCopy = {
 {
   "anti_patterns": [
     {
-      "what": "do not remove legacy /oauth",
-      "why": "callbacks still require session state",
+      "what": "do not finish the Redis queue",
+      "why": "Redis was abandoned after replication lag duplicated billing events",
       "severity": "high"
     }
   ],
-  "risks": ["billing migration still has duplicate-event risk"]
+  "suggested_next_step": "use the Postgres advisory-lock path"
 }`,
     intentCard: {
-      label: "Intent sealed",
-      title: "Replace session auth with JWT",
+      label: "Pre-edit memory",
+      title: "The Redis trap",
       rows: [
-        ["Decision", "JWT for mobile stateless auth"],
-        ["Rejected", "Remove OAuth middleware"],
-        ["Pin", "refs/notes/mainline/intents"],
+        ["Agent sees", "redis.go + TODO"],
+        ["Mainline says", "abandoned path"],
+        ["Result", "avoid wrong diff"],
+      ],
+    },
+    wedge: {
+      eyebrow: "The wedge",
+      heading: "Install once. Your agents remember repo intent before they edit.",
+      paragraphs: [
+        "The human should not have to memorize another workflow. Mainline is a Git-native memory layer agents can call before non-trivial edits.",
+        "A good run feels simple: the agent asks what the repo already learned, makes the change, then records the new intent for the next agent.",
+      ],
+      cards: [
+        ["Agent sees Redis TODO", "Current code says there is a queue to finish."],
+        ["Mainline returns history", "Redis was abandoned after duplicate billing events."],
+        ["Agent avoids the wrong path", "The next diff follows the current decision instead of reviving the old one."],
       ],
     },
     metrics: [
-      ["0", "forbidden-list violations in intent-first eval runs"],
-      ["9", "violations from code-first agents across the same scenarios"],
-      ["Git", "stores repo memory in refs and notes, not one vendor workspace"],
+      ["Before", "Agents read repo memory before non-trivial edits."],
+      ["Avoid", "Abandoned paths and superseded decisions are visible before the diff."],
+      ["Owned", "Memory stays with the repo instead of one agent vendor."],
     ],
     failure: {
       eyebrow: "The failure mode",
@@ -200,6 +221,18 @@ export const homeCopy = {
       ["For solo builders", "Preserve continuity between agents, branches, and future sessions. Your next agent should know why the last one abandoned an approach."],
       ["For teams", "Make repo truth shared before review. See proposed work, file-level constraints, open risks, and intent coverage without Slack archaeology."],
     ],
+    choices: {
+      eyebrow: "Our choices",
+      heading: "Built for repo memory, not productivity surveillance.",
+      cards: [
+        ["Intent, not transcript", "Mainline records durable engineering intent, not every token of an AI session."],
+        ["Pre-edit, not post-hoc", "The important moment is before an agent revives an abandoned path."],
+        ["Repo-owned, not vendor-owned", "Memory lives with the repo so teams can change agents without losing context."],
+        ["Git-native, not SaaS-only", "Refs and notes are the system of record; hosted layers can come later."],
+        ["Agent-agnostic", "Codex, Claude Code, Cursor, Copilot, Windsurf, internal agents: the protocol should survive tool churn."],
+        ["Review context", "Mainline helps reviewers verify intent; it is not a developer leaderboard."],
+      ],
+    },
     cta: {
       eyebrow: "Public alpha",
       heading: "Coding agents should inherit engineering memory.",
@@ -212,7 +245,7 @@ export const homeCopy = {
     metaTitle: "Mainline - 让 AI 写代码前先知道前因后果",
     metaDescription: "Mainline 把代码库里的关键决策、踩坑记录和禁区留在 Git 里，让下一个 AI agent 改代码前先看到。",
     eyebrow: "给 AI agent 的项目记忆",
-    heading: "别让 AI 一遍遍踩团队踩过的坑。",
+    heading: "先别出 diff，先看项目记忆。",
     lede: "代码只能告诉 AI 现在长什么样。Mainline 会把当时为什么这么做、哪些方案已经试废、哪些地方不能乱删，提前摆到 agent 面前。",
     primaryCta: "阅读文档",
     secondaryCta: "阅读文章",
@@ -223,26 +256,39 @@ export const homeCopy = {
 {
   "anti_patterns": [
     {
-      "what": "不要删除 legacy /oauth",
-      "why": "OAuth callback 仍然需要 session state",
+      "what": "不要继续补 Redis queue",
+      "why": "Redis 已经因为 replication lag 导致重复 billing events 被放弃",
       "severity": "high"
     }
   ],
-  "risks": ["billing migration 仍有重复事件风险"]
+  "suggested_next_step": "走 Postgres advisory-lock 路线"
 }`,
     intentCard: {
-      label: "Intent 已 seal",
-      title: "把 session auth 替换为 JWT",
+      label: "改之前先看",
+      title: "Redis trap",
       rows: [
-        ["决策", "移动端使用无状态 JWT"],
-        ["拒绝", "删除 OAuth middleware"],
-        ["Pin", "refs/notes/mainline/intents"],
+        ["Agent 看到", "redis.go 和 TODO"],
+        ["Mainline 提醒", "这条路已废弃"],
+        ["结果", "避开错误 diff"],
+      ],
+    },
+    wedge: {
+      eyebrow: "最小切入口",
+      heading: "安装一次，让 agent 改代码前自己先读项目记忆。",
+      paragraphs: [
+        "人不应该再背一套复杂流程。Mainline 是放在 Git 里的项目记忆层，agent 在动大改动之前自己去读。",
+        "理想状态很简单：agent 先问这个 repo 以前发生过什么，再改代码，最后把这次新的判断留给下一个 agent。",
+      ],
+      cards: [
+        ["Agent 看到 Redis TODO", "当前代码看起来像有个 queue 还没补完。"],
+        ["Mainline 给出历史", "Redis 因为重复 billing events 已经被团队放弃。"],
+        ["Agent 不走回头路", "新的 diff 跟着当前决策走，而不是复活旧方案。"],
       ],
     },
     metrics: [
-      ["0", "intent-first eval 中的 forbidden-list violations"],
-      ["9", "相同场景下 code-first agents 产生的 violations"],
-      ["Git", "用 refs 和 notes 保存 repo memory，而不是锁进某个 vendor workspace"],
+      ["改之前", "agent 先读项目记忆，再动手改代码。"],
+      ["避旧坑", "废弃方案和过期决策，会在出 diff 前被提醒。"],
+      ["归 repo", "记忆跟着代码库走，不锁在某个 agent 平台里。"],
     ],
     failure: {
       eyebrow: "核心失败模式",
@@ -272,6 +318,18 @@ export const homeCopy = {
       ["给独立开发者", "今天这个 agent 放弃了某个方案，三周后的另一个 agent 也应该知道原因。"],
       ["给团队", "别等 PR review 才发现两个人和两个 agent 在同一块代码上互相打架。"],
     ],
+    choices: {
+      eyebrow: "我们的取舍",
+      heading: "做项目记忆，不做效率监控。",
+      cards: [
+        ["记录 intent，不录 transcript", "Mainline 只留下以后还值得看的工程判断，不保存整段 AI 对话。"],
+        ["改之前看，不是出事后复盘", "最值钱的时刻，是 agent 还没把废弃方案写回代码之前。"],
+        ["记忆属于 repo，不属于某个 vendor", "今天用 Codex，明天换 Claude Code，项目记忆也不该丢。"],
+        ["Git-native，不只靠 SaaS", "refs 和 notes 是底层记录，云端协作可以以后再加。"],
+        ["Agent-agnostic", "Codex、Claude Code、Cursor、Copilot、Windsurf、内部 agent 都应该能用。"],
+        ["帮 review，不做排行榜", "Mainline 让 reviewer 看懂这次改动的前因后果，不拿来给开发者排名。"],
+      ],
+    },
     cta: {
       eyebrow: "Public alpha",
       heading: "AI agent 不该只读代码，也该继承项目记忆。",
@@ -284,8 +342,8 @@ export const homeCopy = {
     metaTitle: "Mainline - Memoria nativa en Git para coding agents",
     metaDescription: "Mainline da a los agentes de código el porqué histórico antes de editar lo que existe hoy.",
     eyebrow: "Memoria nativa en Git para coding agents",
-    heading: "Evita que los coding agents repitan errores de ingeniería.",
-    lede: "Mainline da a los agentes de código el porqué histórico antes de editar lo que existe hoy: enfoques abandonados, decisiones superadas, restricciones de review, riesgos e intenciones en curso.",
+    heading: "Memoria del repo antes del diff.",
+    lede: "Mainline da a los agentes de código el porqué histórico antes de editar: enfoques abandonados, decisiones superadas, restricciones de review, riesgos e intenciones en curso.",
     primaryCta: "Leer docs",
     secondaryCta: "Leer ensayo",
     install: "Instalar",
@@ -295,26 +353,39 @@ export const homeCopy = {
 {
   "anti_patterns": [
     {
-      "what": "no eliminar legacy /oauth",
-      "why": "los callbacks OAuth aún requieren session state",
+      "what": "no terminar la cola Redis",
+      "why": "Redis se abandonó tras duplicar eventos de billing por replication lag",
       "severity": "high"
     }
   ],
-  "risks": ["la migración de billing aún puede duplicar eventos"]
+  "suggested_next_step": "usar el camino con Postgres advisory locks"
 }`,
     intentCard: {
-      label: "Intent sealed",
-      title: "Reemplazar auth de sesión con JWT",
+      label: "Memoria antes de editar",
+      title: "La trampa de Redis",
       rows: [
-        ["Decisión", "JWT sin estado para mobile"],
-        ["Rechazado", "Eliminar middleware OAuth"],
-        ["Pin", "refs/notes/mainline/intents"],
+        ["El agente ve", "redis.go + TODO"],
+        ["Mainline dice", "camino abandonado"],
+        ["Resultado", "evita el diff equivocado"],
+      ],
+    },
+    wedge: {
+      eyebrow: "El wedge",
+      heading: "Instala una vez. Tus agentes recuerdan el intent del repo antes de editar.",
+      paragraphs: [
+        "Los humanos no deberían memorizar otro flujo. Mainline es una capa de memoria nativa en Git que los agentes pueden consultar antes de cambios no triviales.",
+        "Un buen run es simple: el agente pregunta qué aprendió el repo, hace el cambio y registra el nuevo intent para el siguiente agente.",
+      ],
+      cards: [
+        ["El agente ve un TODO de Redis", "El código actual parece una cola pendiente."],
+        ["Mainline devuelve historia", "Redis fue abandonado tras duplicar eventos de billing."],
+        ["El agente evita el camino viejo", "El diff sigue la decisión actual en vez de revivir la anterior."],
       ],
     },
     metrics: [
-      ["0", "violaciones de forbidden-list en ejecuciones intent-first"],
-      ["9", "violaciones de agentes code-first en los mismos escenarios"],
-      ["Git", "guarda memoria del repo en refs y notes, no en el workspace de un proveedor"],
+      ["Antes", "Los agentes leen memoria del repo antes de cambios no triviales."],
+      ["Evita", "Caminos abandonados y decisiones superadas aparecen antes del diff."],
+      ["Propio", "La memoria viaja con el repo, no con un proveedor de agente."],
     ],
     failure: {
       eyebrow: "El fallo",
@@ -344,6 +415,18 @@ export const homeCopy = {
       ["Para solo builders", "Conserva continuidad entre agentes, ramas y futuras sesiones. Tu siguiente agente debe saber por qué el anterior abandonó un enfoque."],
       ["Para equipos", "Comparte la verdad del repo antes del review: proposed work, restricciones por archivo, open risks e intent coverage."],
     ],
+    choices: {
+      eyebrow: "Decisiones",
+      heading: "Memoria del repo, no vigilancia de productividad.",
+      cards: [
+        ["Intent, no transcript", "Mainline registra intent duradero, no cada token de una sesión AI."],
+        ["Antes de editar, no después", "El momento clave es antes de que el agente reviva un camino abandonado."],
+        ["Del repo, no del proveedor", "La memoria viaja con el repo aunque cambie la herramienta de agente."],
+        ["Git-native", "Refs y notes son el registro base; una capa hosted puede venir después."],
+        ["Agnóstico al agente", "Codex, Claude Code, Cursor, Copilot, Windsurf o agentes internos deben poder usarlo."],
+        ["Contexto de review", "Mainline ayuda a revisar intent; no es un ranking de desarrolladores."],
+      ],
+    },
     cta: {
       eyebrow: "Public alpha",
       heading: "Los coding agents deben heredar memoria de ingeniería.",

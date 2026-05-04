@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { blogCopy, localizedPath, type Locale } from "../i18n";
+import { blogPostingJsonLd } from "../structuredData";
 
 const {
   title,
@@ -15,6 +16,12 @@ const {
 const currentLocale = locale as Locale;
 const blog = blogCopy[currentLocale];
 const canonicalPath = localizedPath(currentLocale, pagePath);
+const jsonLd = blogPostingJsonLd({
+  title,
+  description: description ?? subtitle,
+  path: canonicalPath,
+  publishDate,
+});
 ---
 
 <BaseLayout
@@ -23,6 +30,7 @@ const canonicalPath = localizedPath(currentLocale, pagePath);
   locale={currentLocale}
   pagePath={pagePath}
   canonicalPath={canonicalPath}
+  jsonLd={jsonLd}
 >
   <article class="article shell">
     <header class="article-header">

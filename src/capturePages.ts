@@ -17,9 +17,13 @@ export type CapturePageKind =
   | "docsWindsurf"
   | "docsAgentsMd"
   | "docsMcp"
+  | "changelog"
+  | "pricing"
+  | "aiPrIntentCheck"
   | "compareAdr"
   | "compareAgentsMd"
-  | "compareCodeSearch";
+  | "compareCodeSearch"
+  | "compareGitAi";
 
 type CaptureSection = {
   heading: string;
@@ -640,6 +644,165 @@ export const capturePages: Record<CapturePageKind, CapturePageContent> = {
       { label: "Git-native memory", href: "/glossary/git-native-memory/" },
     ],
   },
+  changelog: {
+    path: "/changelog/",
+    title: "Mainline changelog | Mainline",
+    description: "Concrete shipping notes for Mainline: agent support, context retrieval, seal quality, eval fixtures, and Git-native repo memory.",
+    eyebrow: "Changelog",
+    heading: "Mainline changelog",
+    intro: "A living log of the concrete work behind Git-native memory for coding agents. The useful signal is specific: agent support, context retrieval quality, seal quality, Git refs and notes reliability, PR intent, and eval coverage.",
+    sections: [
+      {
+        heading: "2026-05-04: Category capture launch pages",
+        body: [
+          "Added definition pages for coding agent memory and repo memory for AI agents, plus the Mainline Agent Memory Eval, glossary, design partner page, and integration docs for major coding agent workflows.",
+        ],
+        bullets: [
+          "/use-cases/coding-agent-memory/",
+          "/eval/",
+          "/docs/codex/",
+          "/docs/claude-code/",
+          "/docs/cursor/",
+          "/docs/github-copilot/",
+          "/docs/windsurf/",
+        ],
+      },
+      {
+        heading: "2026-05-04: mainline.sh canonical SEO",
+        body: [
+          "Moved the public site to mainline.sh as the canonical domain, added technical SEO files, and published the first category pages around repo memory, engineering intent memory, and intent-aware AI PR review.",
+        ],
+      },
+      {
+        heading: "2026-05-04: Multilingual public site",
+        body: [
+          "Added static Chinese and Spanish routes for the main website, docs, spec, install, comparison pages, and the first repo-memory essay.",
+        ],
+      },
+      {
+        heading: "2026-05-03: Website repo and first landing page",
+        body: [
+          "Initialized the standalone Astro website repo so the product repo can stay focused on CLI, protocol, agent workflow, docs, and release engineering.",
+        ],
+      },
+    ],
+    callout: {
+      label: "Changelog rule",
+      heading: "Ship notes should be concrete enough to build trust.",
+      body: "Mainline changelog entries should name agent support, context quality, seal behavior, Git storage reliability, PR intent, or eval changes instead of vague documentation updates.",
+    },
+    related: [
+      { label: "Mainline Agent Memory Eval", href: "/eval/" },
+      { label: "Using Mainline with Codex", href: "/docs/codex/" },
+      { label: "Design partners", href: "/design-partners/" },
+    ],
+  },
+  pricing: {
+    path: "/pricing/",
+    title: "Mainline pricing | Mainline",
+    description: "Mainline starts with an open-source CLI and protocol, with future Team Cloud and Enterprise options for AI-generated PR review workflows.",
+    eyebrow: "Pricing",
+    heading: "Open source core. Team memory later.",
+    intro: "Mainline's core should be useful before there is a sales call: local CLI, Git-native intent records, agent context, and the open protocol. Team and enterprise layers should add hosted collaboration, policy, review context, and audit workflows without locking repo memory into one vendor.",
+    sections: [
+      {
+        heading: "Open Source",
+        body: ["For individuals and teams that want repo-owned memory locally."],
+        bullets: [
+          "Mainline CLI",
+          "Git refs and notes storage",
+          "intent records and agent context",
+          "local hub/export surfaces",
+          "agent workflow docs",
+        ],
+      },
+      {
+        heading: "Team Cloud",
+        body: ["Planned hosted workflow for teams reviewing agent-generated PRs."],
+        bullets: [
+          "PR intent summaries",
+          "related prior decisions",
+          "open risks and anti-patterns",
+          "team search over repo memory",
+          "review guardrails for AI-generated changes",
+        ],
+      },
+      {
+        heading: "Enterprise",
+        body: ["Planned for organizations that need self-hosting, policy, and integration with existing engineering systems."],
+        bullets: [
+          "self-hosted or dedicated deployment",
+          "SCM and CI integration",
+          "policy controls",
+          "audit exports",
+          "support for internal coding agents",
+        ],
+      },
+      {
+        heading: "What Mainline will not sell",
+        body: [
+          "Mainline is not productivity surveillance. The product direction is repo-owned engineering memory and review trust for agent changes, not ranking developers by AI usage.",
+        ],
+      },
+    ],
+    callout: {
+      label: "Design partners",
+      heading: "Help shape the Team layer before pricing is final.",
+      body: "We are looking for AI-heavy engineering teams that want repo memory before agent-generated changes reach review.",
+      code: "hello@mainline.sh",
+    },
+    related: [
+      { label: "Design partners", href: "/design-partners/" },
+      { label: "Intent-aware AI PR review", href: "/use-cases/ai-pr-intent-check/" },
+      { label: "Git AI comparison", href: "/compare/git-ai/" },
+    ],
+  },
+  aiPrIntentCheck: {
+    path: "/use-cases/ai-pr-intent-check/",
+    title: "AI PR intent check | Mainline",
+    description: "Mainline gives reviewers repo memory before they review AI-generated PRs: intent, risks, prior decisions, and anti-patterns.",
+    eyebrow: "Use case",
+    heading: "AI PR intent check",
+    intro: "AI-generated PRs need more than a diff. Reviewers need to know whether the agent saw prior decisions, avoided abandoned approaches, preserved constraints, and recorded the new intent.",
+    sections: [
+      {
+        heading: "The review problem",
+        body: [
+          "A plausible AI-generated diff can still repeat a decision the team already rejected. Without repo memory, reviewers infer intent backward from code.",
+        ],
+      },
+      {
+        heading: "What Mainline should surface",
+        body: ["An intent-aware PR check should show the pieces a reviewer would otherwise hunt for manually."],
+        bullets: [
+          "why this work exists",
+          "related prior decisions",
+          "abandoned approaches in the touched area",
+          "superseded decisions and compatibility paths",
+          "open risks and reviewer constraints",
+          "new durable intent from this change",
+        ],
+      },
+      {
+        heading: "Agent loop",
+        body: [
+          "The agent reads repo memory before editing, makes the change, then seals the durable intent so review starts from the why instead of guessing it.",
+        ],
+        code: "mainline context --current --json\nmainline start \"...\"\nmainline append \"...\"\nmainline seal",
+      },
+      {
+        heading: "Commercial direction",
+        body: [
+          "The open-source CLI owns the local protocol. The future team layer can make intent checks visible in PR review without turning Mainline into productivity analytics.",
+        ],
+      },
+    ],
+    related: [
+      { label: "Intent-aware AI PR review", href: "/use-cases/ai-pr-review/" },
+      { label: "Design partners", href: "/design-partners/" },
+      { label: "Pricing", href: "/pricing/" },
+    ],
+  },
   compareAdr: {
     path: "/compare/adr/",
     title: "Mainline vs ADRs | Mainline",
@@ -753,6 +916,64 @@ export const capturePages: Record<CapturePageKind, CapturePageContent> = {
       { label: "Mainline vs RAG", href: "/compare/rag/" },
       { label: "Abandoned approach", href: "/glossary/abandoned-approach/" },
       { label: "Mainline Agent Memory Eval", href: "/eval/" },
+    ],
+  },
+  compareGitAi: {
+    path: "/compare/git-ai/",
+    title: "Mainline vs Git AI | Mainline",
+    description: "Git AI tracks AI authorship after code exists. Mainline gives agents engineering intent before they edit code.",
+    eyebrow: "Comparison",
+    heading: "Mainline vs Git AI",
+    intro: "Git AI and Mainline are complementary. Git AI tracks AI authorship after code exists. Mainline gives agents engineering intent before they edit code.",
+    sections: [
+      {
+        heading: "Git AI's wedge",
+        body: [
+          "Git AI is strongest as AI attribution: which lines were AI-generated, which agent or model created them, and how that code moves through Git history and production.",
+          "The natural mental model is git blame for AI code.",
+        ],
+      },
+      {
+        heading: "Mainline's wedge",
+        body: [
+          "Mainline does not care whether a line was written by a human or an agent. It cares what the next agent must know before changing the code.",
+          "The mental model is repo memory before the diff.",
+        ],
+      },
+      {
+        heading: "Different questions",
+        body: ["The products answer different moments in the engineering loop."],
+        bullets: [
+          "Git AI: who or what generated this code?",
+          "Git AI: which agent/model/session does this line trace back to?",
+          "Mainline: why was this engineering decision made?",
+          "Mainline: which abandoned approach should the next agent avoid?",
+          "Mainline: what should reviewers know before trusting this PR?",
+        ],
+      },
+      {
+        heading: "Use both",
+        body: [
+          "AI authorship is useful after code exists. Intent memory is useful before the next edit. Teams adopting coding agents may need both provenance and repo memory.",
+        ],
+      },
+      {
+        heading: "Mainline's boundary",
+        body: [
+          "Mainline is not AI productivity analytics. It does not rank developers, score AI adoption, or measure whether humans or agents wrote more code.",
+          "It preserves engineering intent so future agents do not repeat mistakes.",
+        ],
+      },
+    ],
+    callout: {
+      label: "One-line distinction",
+      heading: "Git AI explains who/what generated AI code after it exists. Mainline tells agents why before they change code.",
+      body: "That is the comparison Mainline should repeat.",
+    },
+    related: [
+      { label: "What is coding agent memory?", href: "/use-cases/coding-agent-memory/" },
+      { label: "AI PR intent check", href: "/use-cases/ai-pr-intent-check/" },
+      { label: "Pricing", href: "/pricing/" },
     ],
   },
 };

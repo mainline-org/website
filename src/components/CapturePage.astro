@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { capturePages, type CapturePageKind } from "../capturePages";
+import { webPageJsonLd } from "../structuredData";
 
 interface Props {
   kind: CapturePageKind;
@@ -8,6 +9,12 @@ interface Props {
 
 const { kind } = Astro.props;
 const t = capturePages[kind];
+const jsonLd = webPageJsonLd({
+  title: t.title,
+  description: t.description,
+  path: t.path,
+  type: kind === "glossaryIndex" ? "CollectionPage" : "WebPage",
+});
 ---
 
 <BaseLayout
@@ -16,6 +23,7 @@ const t = capturePages[kind];
   title={t.title}
   description={t.description}
   availableLocales={["en"]}
+  jsonLd={jsonLd}
 >
   <section class="page-hero shell compact">
     <p class="eyebrow">{t.eyebrow}</p>

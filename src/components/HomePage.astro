@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { homeCopy, localizedPath, type Locale } from "../i18n";
+import { organizationJsonLd, softwareJsonLd, webPageJsonLd } from "../structuredData";
 
 interface Props {
   locale: Locale;
@@ -8,6 +9,11 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = homeCopy[locale];
+const pageJsonLd = webPageJsonLd({
+  title: t.metaTitle,
+  description: t.metaDescription,
+  path: localizedPath(locale, "/"),
+});
 ---
 
 <BaseLayout
@@ -15,6 +21,7 @@ const t = homeCopy[locale];
   pagePath="/"
   title={t.metaTitle}
   description={t.metaDescription}
+  jsonLd={[organizationJsonLd, softwareJsonLd, pageJsonLd]}
 >
   <section class="hero shell">
     <div class="hero-copy">
@@ -62,6 +69,25 @@ const t = homeCopy[locale];
 
   <section class="section shell two-column">
     <div>
+      <p class="eyebrow">{t.wedge.eyebrow}</p>
+      <h2>{t.wedge.heading}</h2>
+    </div>
+    <div class="rich-text">
+      {t.wedge.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+
+  <section class="section shell split-cards compact-cards">
+    {t.wedge.cards.map(([heading, body]) => (
+      <article>
+        <h2>{heading}</h2>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell two-column">
+    <div>
       <p class="eyebrow">{t.failure.eyebrow}</p>
       <h2>{t.failure.heading}</h2>
     </div>
@@ -99,6 +125,20 @@ const t = homeCopy[locale];
         <p>{body}</p>
       </article>
     ))}
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <p class="eyebrow">{t.choices.eyebrow}</p>
+      <h2>{t.choices.heading}</h2>
+    </div>
+    <div class="rich-text">
+      <ul class="choice-list">
+        {t.choices.cards.map(([heading, body]) => (
+          <li><strong>{heading}</strong><span>{body}</span></li>
+        ))}
+      </ul>
+    </div>
   </section>
 
   <section class="section shell final-cta">

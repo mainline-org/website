@@ -477,6 +477,10 @@ h1 {
   padding: 24px;
 }
 
+.compact-cards {
+  padding-top: 0;
+}
+
 .feature-index {
   display: inline-block;
   margin-bottom: 34px;
@@ -519,6 +523,30 @@ h1 {
 .seo-grid li,
 .rich-text li {
   margin: 8px 0;
+}
+
+.choice-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.choice-list li {
+  display: grid;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 14px;
+}
+
+.choice-list strong {
+  color: var(--ink);
+  font-size: 1.04rem;
+}
+
+.choice-list span {
+  color: var(--muted);
 }
 
 .seo-grid pre {

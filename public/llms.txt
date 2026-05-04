@@ -4,6 +4,16 @@ Mainline is Git-native memory for coding agents. It gives AI coding agents the h
 
 Canonical site: https://mainline.sh/
 Repository: https://github.com/mainline-org/mainline
+Author: Mainline maintainers
+
+AI-readable knowledge endpoints:
+
+- Full context: https://mainline.sh/llms-full.txt
+- Profile JSON: https://mainline.sh/api/profile
+- Projects JSON: https://mainline.sh/api/projects
+- Blog JSON: https://mainline.sh/api/blog
+- Weekly/changelog JSON: https://mainline.sh/api/weekly
+- Combined knowledge JSON: https://mainline.sh/api/knowledge
 
 ## Core pages
 
@@ -13,6 +23,8 @@ Repository: https://github.com/mainline-org/mainline
 - Spec: https://mainline.sh/spec/
 - Install: https://mainline.sh/install/
 - Mainline Agent Memory Eval: https://mainline.sh/eval/
+- Changelog: https://mainline.sh/changelog/
+- Pricing: https://mainline.sh/pricing/
 - Design partners: https://mainline.sh/design-partners/
 - Blog essay: https://mainline.sh/blog/why-coding-agents-need-repo-memory/
 
@@ -23,6 +35,7 @@ Repository: https://github.com/mainline-org/mainline
 - Repo memory for coding agents: https://mainline.sh/use-cases/repo-memory-for-coding-agents/
 - Engineering intent memory: https://mainline.sh/use-cases/engineering-intent-memory/
 - Intent-aware AI PR review: https://mainline.sh/use-cases/ai-pr-review/
+- AI PR intent check: https://mainline.sh/use-cases/ai-pr-intent-check/
 
 ## Glossary
 
@@ -41,6 +54,7 @@ Repository: https://github.com/mainline-org/mainline
 - Mainline vs ADRs: https://mainline.sh/compare/adr/
 - Mainline vs AGENTS.md: https://mainline.sh/compare/agents-md/
 - Mainline vs code search: https://mainline.sh/compare/code-search/
+- Mainline vs Git AI: https://mainline.sh/compare/git-ai/
 
 ## Integration docs
 
@@ -58,6 +72,7 @@ Repository: https://github.com/mainline-org/mainline
 - Code search tells agents what exists. Mainline tells them what not to repeat.
 - Mainline is Git-native memory for coding agents.
 - Reasonable code. Wrong historical reason.
+- Repo memory before the diff.
 - RAG finds similar code. Mainline finds prior intent.
 
 ## Install commands

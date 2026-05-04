@@ -15,6 +15,8 @@
   <url><loc>https://mainline.sh/spec/</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://mainline.sh/install/</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://mainline.sh/eval/</loc><lastmod>2026-05-04</lastmod><priority>0.9</priority></url>
+  <url><loc>https://mainline.sh/changelog/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
+  <url><loc>https://mainline.sh/pricing/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://mainline.sh/design-partners/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://mainline.sh/compare/rag/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://mainline.sh/compare/session-memory/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
@@ -22,11 +24,13 @@
   <url><loc>https://mainline.sh/compare/adr/</loc><lastmod>2026-05-04</lastmod><priority>0.6</priority></url>
   <url><loc>https://mainline.sh/compare/agents-md/</loc><lastmod>2026-05-04</lastmod><priority>0.6</priority></url>
   <url><loc>https://mainline.sh/compare/code-search/</loc><lastmod>2026-05-04</lastmod><priority>0.6</priority></url>
+  <url><loc>https://mainline.sh/compare/git-ai/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://mainline.sh/use-cases/coding-agent-memory/</loc><lastmod>2026-05-04</lastmod><priority>0.9</priority></url>
   <url><loc>https://mainline.sh/use-cases/repo-memory-for-ai-agents/</loc><lastmod>2026-05-04</lastmod><priority>0.9</priority></url>
   <url><loc>https://mainline.sh/use-cases/repo-memory-for-coding-agents/</loc><lastmod>2026-05-04</lastmod><priority>0.9</priority></url>
   <url><loc>https://mainline.sh/use-cases/engineering-intent-memory/</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://mainline.sh/use-cases/ai-pr-review/</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mainline.sh/use-cases/ai-pr-intent-check/</loc><lastmod>2026-05-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://mainline.sh/glossary/</loc><lastmod>2026-05-04</lastmod><priority>0.7</priority></url>
   <url><loc>https://mainline.sh/glossary/abandoned-approach/</loc><lastmod>2026-05-04</lastmod><priority>0.6</priority></url>
   <url><loc>https://mainline.sh/glossary/superseded-decision/</loc><lastmod>2026-05-04</lastmod><priority>0.6</priority></url>

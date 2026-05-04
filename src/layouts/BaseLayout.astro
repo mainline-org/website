@@ -17,6 +17,7 @@ interface Props {
   pagePath?: string;
   ogImage?: string;
   availableLocales?: Locale[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   canonicalPath = localizedPath(locale, pagePath),
   ogImage = "/og-image.png",
   availableLocales = [...localeCodes],
+  jsonLd = [],
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://mainline.sh";
@@ -41,6 +43,7 @@ const languageLinks = availableLocales.map((code) => ({
   href: localizedPath(code, pagePath),
   hreflang: locales[code].hreflang,
 }));
+const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 ---
 
 <!doctype html>
@@ -67,6 +70,9 @@ const languageLinks = availableLocales.map((code) => ({
       <link rel="alternate" hreflang={link.hreflang} href={new URL(link.href, site).toString()} />
     ))}
     <link rel="alternate" hreflang="x-default" href={new URL(localizedPath(defaultLocale, pagePath), site).toString()} />
+    {jsonLdItems.map((item) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
     <slot name="head" />
   </head>
   <body>
@@ -117,11 +123,13 @@ const languageLinks = availableLocales.map((code) => ({
           <a href={localizedPath(locale, "/spec/")}>{ui.nav.spec}</a>
           <a href={localizedPath(locale, "/install/")}>{ui.footer.install}</a>
           <a href="/eval/">{ui.footer.eval}</a>
+          <a href="/pricing/">{ui.footer.pricing}</a>
           <a href={localizedPath(locale, "/compare/session-memory/")}>{ui.footer.sessionMemory}</a>
         </div>
         <div>
           <h2>{ui.footer.writing}</h2>
           <a href={localizedPath(locale, "/blog/")}>{ui.nav.blog}</a>
+          <a href="/changelog/">{ui.footer.changelog}</a>
           <a href={localizedPath(locale, "/blog/why-coding-agents-need-repo-memory/")}>{ui.footer.repoMemoryEssay}</a>
           <a href="/glossary/">{ui.footer.glossary}</a>
           <a href="/design-partners/">{ui.footer.designPartners}</a>
