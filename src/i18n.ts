@@ -54,6 +54,8 @@ export const uiCopy: Record<Locale, {
     product: string;
     writing: string;
     install: string;
+    eval: string;
+    glossary: string;
     sessionMemory: string;
     repoMemoryEssay: string;
     designPartners: string;
@@ -76,6 +78,8 @@ export const uiCopy: Record<Locale, {
       product: "Product",
       writing: "Writing",
       install: "Install",
+      eval: "Agent Memory Eval",
+      glossary: "Glossary",
       sessionMemory: "Session memory",
       repoMemoryEssay: "Repo memory essay",
       designPartners: "Design partners",
@@ -98,6 +102,8 @@ export const uiCopy: Record<Locale, {
       product: "产品",
       writing: "文章",
       install: "安装",
+      eval: "Agent Memory Eval",
+      glossary: "术语表",
       sessionMemory: "Session memory",
       repoMemoryEssay: "Repo memory 文章",
       designPartners: "设计伙伴",
@@ -120,6 +126,8 @@ export const uiCopy: Record<Locale, {
       product: "Producto",
       writing: "Lecturas",
       install: "Instalar",
+      eval: "Agent Memory Eval",
+      glossary: "Glosario",
       sessionMemory: "Memoria de sesión",
       repoMemoryEssay: "Ensayo sobre memoria del repo",
       designPartners: "Design partners",

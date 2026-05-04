@@ -521,6 +521,17 @@ h1 {
   margin: 8px 0;
 }
 
+.seo-grid pre {
+  margin-top: 18px;
+  border-radius: 8px;
+  padding: 16px;
+  background: #191b18;
+  color: #d7f7e9;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
 .seo-callout {
   display: grid;
   grid-template-columns: 1fr minmax(320px, 0.9fr);

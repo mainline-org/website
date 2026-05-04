@@ -1,0 +1,19 @@
+---
+import CapturePage from "../components/CapturePage.astro";
+import { capturePages, type CapturePageKind } from "../capturePages";
+
+export function getStaticPaths() {
+  return Object.entries(capturePages).map(([kind, page]) => ({
+    params: { capture: page.path.replace(/^\/|\/$/g, "") },
+    props: { kind },
+  }));
+}
+
+interface Props {
+  kind: CapturePageKind;
+}
+
+const { kind } = Astro.props;
+---
+
+<CapturePage kind={kind} />

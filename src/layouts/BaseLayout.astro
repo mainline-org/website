@@ -16,6 +16,7 @@ interface Props {
   locale?: Locale;
   pagePath?: string;
   ogImage?: string;
+  availableLocales?: Locale[];
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   pagePath = Astro.url.pathname.replace(/^\/(zh|es)(?=\/|$)/, "") || "/",
   canonicalPath = localizedPath(locale, pagePath),
   ogImage = "/og-image.png",
+  availableLocales = [...localeCodes],
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://mainline.sh";
@@ -33,7 +35,7 @@ const imageUrl = new URL(ogImage, site).toString();
 const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
 const ui = uiCopy[locale];
 const htmlLang = locales[locale].htmlLang;
-const languageLinks = localeCodes.map((code) => ({
+const languageLinks = availableLocales.map((code) => ({
   code,
   label: locales[code].shortLabel,
   href: localizedPath(code, pagePath),
@@ -114,13 +116,15 @@ const languageLinks = localeCodes.map((code) => ({
           <a href={localizedPath(locale, "/docs/")}>{ui.nav.docs}</a>
           <a href={localizedPath(locale, "/spec/")}>{ui.nav.spec}</a>
           <a href={localizedPath(locale, "/install/")}>{ui.footer.install}</a>
+          <a href="/eval/">{ui.footer.eval}</a>
           <a href={localizedPath(locale, "/compare/session-memory/")}>{ui.footer.sessionMemory}</a>
         </div>
         <div>
           <h2>{ui.footer.writing}</h2>
           <a href={localizedPath(locale, "/blog/")}>{ui.nav.blog}</a>
           <a href={localizedPath(locale, "/blog/why-coding-agents-need-repo-memory/")}>{ui.footer.repoMemoryEssay}</a>
-          <a href="mailto:hello@mainline.sh">{ui.footer.designPartners}</a>
+          <a href="/glossary/">{ui.footer.glossary}</a>
+          <a href="/design-partners/">{ui.footer.designPartners}</a>
         </div>
       </div>
     </footer>

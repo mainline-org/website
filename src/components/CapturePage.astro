@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { capturePages, type CapturePageKind } from "../capturePages";
+
+interface Props {
+  kind: CapturePageKind;
+}
+
+const { kind } = Astro.props;
+const t = capturePages[kind];
+---
+
+<BaseLayout
+  locale="en"
+  pagePath={t.path}
+  title={t.title}
+  description={t.description}
+  availableLocales={["en"]}
+>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+
+  {t.stats && (
+    <section class="proof-band">
+      <div class="shell proof-grid">
+        {t.stats.map(([metric, label]) => (
+          <div>
+            <span class="metric">{metric}</span>
+            <p>{label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="section shell seo-grid">
+    {t.sections.map((section, index) => (
+      <article class:list={[section.bullets && "wide"]}>
+        <span class="feature-index">{String(index + 1).padStart(2, "0")}</span>
+        <h2>{section.heading}</h2>
+        {section.body.map((paragraph) => <p>{paragraph}</p>)}
+        {section.bullets && (
+          <ul>
+            {section.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        )}
+        {section.code && (
+          <pre><code>{section.code}</code></pre>
+        )}
+      </article>
+    ))}
+  </section>
+
+  {t.callout && (
+    <section class="section shell seo-callout">
+      <div>
+        <p class="eyebrow">{t.callout.label}</p>
+        <h2>{t.callout.heading}</h2>
+        <p>{t.callout.body}</p>
+      </div>
+      {t.callout.code && (
+        <pre><code>{t.callout.code}</code></pre>
+      )}
+    </section>
+  )}
+
+  <section class="section shell related-links">
+    <h2>Related reading</h2>
+    <div>
+      {t.related.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

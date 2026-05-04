@@ -8,22 +8,57 @@ Repository: https://github.com/mainline-org/mainline
 ## Core pages
 
 - Home: https://mainline.sh/
+- Mainline category page: https://mainline.sh/mainline/
 - Docs: https://mainline.sh/docs/
 - Spec: https://mainline.sh/spec/
 - Install: https://mainline.sh/install/
+- Mainline Agent Memory Eval: https://mainline.sh/eval/
+- Design partners: https://mainline.sh/design-partners/
 - Blog essay: https://mainline.sh/blog/why-coding-agents-need-repo-memory/
 
 ## Category pages
 
+- What is coding agent memory?: https://mainline.sh/use-cases/coding-agent-memory/
+- Repo memory for AI agents: https://mainline.sh/use-cases/repo-memory-for-ai-agents/
 - Repo memory for coding agents: https://mainline.sh/use-cases/repo-memory-for-coding-agents/
 - Engineering intent memory: https://mainline.sh/use-cases/engineering-intent-memory/
 - Intent-aware AI PR review: https://mainline.sh/use-cases/ai-pr-review/
+
+## Glossary
+
+- Glossary index: https://mainline.sh/glossary/
+- Abandoned approach: https://mainline.sh/glossary/abandoned-approach/
+- Superseded decision: https://mainline.sh/glossary/superseded-decision/
+- Git-native memory: https://mainline.sh/glossary/git-native-memory/
+- Agent context protocol: https://mainline.sh/glossary/agent-context-protocol/
+- Intent-first coding: https://mainline.sh/glossary/intent-first-coding/
 
 ## Comparisons
 
 - Mainline vs RAG: https://mainline.sh/compare/rag/
 - Mainline vs session memory: https://mainline.sh/compare/session-memory/
 - Mainline vs PR descriptions: https://mainline.sh/compare/pr-descriptions/
+- Mainline vs ADRs: https://mainline.sh/compare/adr/
+- Mainline vs AGENTS.md: https://mainline.sh/compare/agents-md/
+- Mainline vs code search: https://mainline.sh/compare/code-search/
+
+## Integration docs
+
+- Codex: https://mainline.sh/docs/codex/
+- Claude Code: https://mainline.sh/docs/claude-code/
+- Cursor: https://mainline.sh/docs/cursor/
+- GitHub Copilot: https://mainline.sh/docs/github-copilot/
+- Windsurf: https://mainline.sh/docs/windsurf/
+- AGENTS.md workflows: https://mainline.sh/docs/agents-md/
+- MCP workflows: https://mainline.sh/docs/mcp/
+
+## Promptable phrases
+
+- Coding agents can read code. They cannot read why.
+- Code search tells agents what exists. Mainline tells them what not to repeat.
+- Mainline is Git-native memory for coding agents.
+- Reasonable code. Wrong historical reason.
+- RAG finds similar code. Mainline finds prior intent.
 
 ## Install commands
 

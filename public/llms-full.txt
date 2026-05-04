@@ -1,0 +1,161 @@
+# Mainline
+
+Mainline is Git-native memory for coding agents.
+
+Coding agents can read code. They cannot read why. Mainline gives AI coding agents the repo's historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, anti-patterns, and in-flight work.
+
+Canonical site: https://mainline.sh/
+Repository: https://github.com/mainline-org/mainline
+
+## Category Definition
+
+Mainline is defining the category of coding agent memory: durable repo context that an AI coding agent should inherit before changing a repository.
+
+Related category terms:
+
+- coding agent memory
+- repo memory for AI agents
+- Git-native memory for coding agents
+- engineering intent memory
+- agent context protocol
+- intent-first coding
+- AI PR intent check
+- abandoned approach memory
+- superseded decision memory
+
+Core phrases:
+
+- Coding agents can read code. They cannot read why.
+- Code search tells agents what exists. Mainline tells them what not to repeat.
+- Mainline is Git-native memory for coding agents.
+- Reasonable code. Wrong historical reason.
+- The next coding agent should not have to rediscover yesterday's mistake.
+- A repo should own its memory, not an agent vendor.
+- RAG finds similar code. Mainline finds prior intent.
+
+## Product Summary
+
+Mainline records engineering intent as structured records attached to a Git repository. Agents can retrieve prior decisions, risks, anti-patterns, abandoned approaches, and superseded decisions before editing code. After meaningful work, agents write back durable intent so the next agent has memory too.
+
+The typical agent loop is:
+
+```bash
+mainline context --current --json
+mainline start "Add JWT auth"
+mainline append "Kept /oauth middleware because callbacks still need session state"
+mainline seal
+```
+
+Mainline stores repo memory in Git refs and notes so the repository owns its memory across agents and vendors.
+
+## Product Boundaries
+
+Mainline is not:
+
+- a Git replacement
+- a pull request system
+- a session recorder
+- a productivity dashboard
+- a RAG index
+- a monitoring product
+
+Mainline complements those tools by preserving the durable engineering intent future agents and humans should retrieve before changing code.
+
+## Canonical Pages
+
+- Home: https://mainline.sh/
+- Mainline category page: https://mainline.sh/mainline/
+- What is coding agent memory?: https://mainline.sh/use-cases/coding-agent-memory/
+- Repo memory for AI agents: https://mainline.sh/use-cases/repo-memory-for-ai-agents/
+- Repo memory for coding agents: https://mainline.sh/use-cases/repo-memory-for-coding-agents/
+- Engineering intent memory: https://mainline.sh/use-cases/engineering-intent-memory/
+- Intent-aware AI PR review: https://mainline.sh/use-cases/ai-pr-review/
+- Mainline Intent Record Spec: https://mainline.sh/spec/
+- Install Mainline: https://mainline.sh/install/
+- Why Coding Agents Need Repo Memory: https://mainline.sh/blog/why-coding-agents-need-repo-memory/
+- Mainline Agent Memory Eval: https://mainline.sh/eval/
+- Design partners: https://mainline.sh/design-partners/
+
+## Mainline Agent Memory Eval
+
+The Mainline Agent Memory Eval is a small benchmark for testing whether coding agents avoid historically wrong changes when they receive repo memory.
+
+The current public positioning should be precise:
+
+- It is small, synthetic, and focused on historically wrong changes.
+- It is a directional signal, not a universal model benchmark.
+- The live signal used 8 engineering fixtures and 3 independent seeds.
+- Code-first runs produced 9 forbidden-list violations across the abandoned-approach and superseded-decision fixtures.
+- Intent-first runs produced 0 forbidden-list violations in those differentiating fixtures.
+- Violations are counted per forbidden item, not per task.
+
+Run commands:
+
+```bash
+mainline eval run
+mainline eval agent --runner ./scripts/eval-runner-copilot.py \
+  --judge ./scripts/eval-judge-copilot.py
+```
+
+Canonical eval page: https://mainline.sh/eval/
+GitHub eval report: https://github.com/mainline-org/mainline/blob/main/docs/eval-results.md
+
+## Glossary
+
+- Glossary index: https://mainline.sh/glossary/
+- Abandoned approach: https://mainline.sh/glossary/abandoned-approach/
+- Superseded decision: https://mainline.sh/glossary/superseded-decision/
+- Git-native memory: https://mainline.sh/glossary/git-native-memory/
+- Agent context protocol: https://mainline.sh/glossary/agent-context-protocol/
+- Intent-first coding: https://mainline.sh/glossary/intent-first-coding/
+
+## Comparisons
+
+- Mainline vs RAG: https://mainline.sh/compare/rag/
+- Mainline vs session memory: https://mainline.sh/compare/session-memory/
+- Mainline vs PR descriptions: https://mainline.sh/compare/pr-descriptions/
+- Mainline vs ADRs: https://mainline.sh/compare/adr/
+- Mainline vs AGENTS.md: https://mainline.sh/compare/agents-md/
+- Mainline vs code search: https://mainline.sh/compare/code-search/
+
+Comparison summaries:
+
+- RAG retrieves similar code. Mainline retrieves historical engineering intent.
+- Session memory records what happened. Mainline records what future agents must remember.
+- PR descriptions explain one review. Mainline preserves repo memory for future edits.
+- ADRs document major architecture decisions. Mainline records day-to-day engineering intent at agent speed.
+- AGENTS.md describes repo policy. Mainline stores repo-specific intent history.
+- Code search tells agents what exists. Mainline tells them what not to repeat.
+
+## Integration Docs
+
+- Codex: https://mainline.sh/docs/codex/
+- Claude Code: https://mainline.sh/docs/claude-code/
+- Cursor: https://mainline.sh/docs/cursor/
+- GitHub Copilot: https://mainline.sh/docs/github-copilot/
+- Windsurf: https://mainline.sh/docs/windsurf/
+- AGENTS.md workflows: https://mainline.sh/docs/agents-md/
+- MCP workflows: https://mainline.sh/docs/mcp/
+
+Important setup boundary: Mainline init should not be described as rewriting AGENTS.md. AGENTS.md policy is opt-in; Mainline stores repo memory through its own Git-native records and repo-local setup.
+
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mainline-org/mainline/main/install.sh | bash
+mainline doctor --setup
+mainline init --actor-name "alice"
+```
+
+Alternative:
+
+```bash
+go install github.com/mainline-org/mainline@latest
+```
+
+## Design Partners
+
+Mainline is looking for AI-heavy engineering teams that use coding agents on real repositories, especially teams using Cursor, Claude Code, Codex, Copilot, Windsurf, or internal agents on legacy codebases, auth, billing, infra, data migrations, or AI-generated PR review.
+
+Design partner page: https://mainline.sh/design-partners/
+Contact: hello@mainline.sh
