@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { type Locale } from "../i18n";
+import { installCopy } from "../seoPages";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = installCopy[locale];
+const labels = {
+  en: {
+    safety: "Safety",
+    safetyHeading: "Install with a clear artifact path.",
+    next: "Next",
+    nextHeading: "After install",
+  },
+  zh: {
+    safety: "安全",
+    safetyHeading: "安装时先看清楚包从哪里来。",
+    next: "下一步",
+    nextHeading: "安装之后",
+  },
+  es: {
+    safety: "Seguridad",
+    safetyHeading: "Instala con una ruta de artefacto clara.",
+    next: "Siguiente",
+    nextHeading: "Después de instalar",
+  },
+}[locale];
+---
+
+<BaseLayout locale={locale} pagePath={t.path} title={t.title} description={t.description}>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+
+  <section class="section shell install-grid">
+    {t.commands.map((item) => (
+      <article>
+        <h2>{item.label}</h2>
+        <pre><code>{item.command}</code></pre>
+        <p>{item.note}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <p class="eyebrow">{labels.safety}</p>
+      <h2>{labels.safetyHeading}</h2>
+    </div>
+    <div class="rich-text">
+      <ul>
+        {t.safety.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section shell workflow">
+    <div>
+      <p class="eyebrow">{labels.next}</p>
+      <h2>{labels.nextHeading}</h2>
+    </div>
+    <ol>
+      {t.nextSteps.map((step) => (
+        <li><code>{step.command}</code><span>{step.note}</span></li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>

@@ -53,6 +53,7 @@ export const uiCopy: Record<Locale, {
     tagline: string;
     product: string;
     writing: string;
+    install: string;
     sessionMemory: string;
     repoMemoryEssay: string;
     designPartners: string;
@@ -71,9 +72,10 @@ export const uiCopy: Record<Locale, {
       compare: "Compare",
     },
     footer: {
-      tagline: "Git-native intent memory for AI-assisted engineering.",
+      tagline: "Git-native memory for coding agents.",
       product: "Product",
       writing: "Writing",
+      install: "Install",
       sessionMemory: "Session memory",
       repoMemoryEssay: "Repo memory essay",
       designPartners: "Design partners",
@@ -92,9 +94,10 @@ export const uiCopy: Record<Locale, {
       compare: "对比",
     },
     footer: {
-      tagline: "面向 AI 辅助工程的 Git 原生 intent memory。",
+      tagline: "给 coding agents 用的 Git 原生项目记忆。",
       product: "产品",
       writing: "文章",
+      install: "安装",
       sessionMemory: "Session memory",
       repoMemoryEssay: "Repo memory 文章",
       designPartners: "设计伙伴",
@@ -113,9 +116,10 @@ export const uiCopy: Record<Locale, {
       compare: "Comparar",
     },
     footer: {
-      tagline: "Memoria de intención, nativa en Git, para ingeniería asístida por IA.",
+      tagline: "Memoria nativa en Git para coding agents.",
       product: "Producto",
       writing: "Lecturas",
+      install: "Instalar",
       sessionMemory: "Memoria de sesión",
       repoMemoryEssay: "Ensayo sobre memoria del repo",
       designPartners: "Design partners",
@@ -125,11 +129,11 @@ export const uiCopy: Record<Locale, {
 
 export const homeCopy = {
   en: {
-    metaTitle: "Mainline - Git-native intent memory for coding agents",
-    metaDescription: "Mainline gives AI coding agents the histórical why before they edit the current what.",
-    eyebrow: "Git-native intent memory",
-    heading: "Stop coding agents from repeating old engineering mistakes.",
-    lede: "Mainline gives AI coding agents the histórical why before they edit the current what: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight intent.",
+    metaTitle: "Mainline - Git-native memory for coding agents",
+    metaDescription: "Mainline helps AI coding agents understand the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
+    eyebrow: "Git-native memory for coding agents",
+    heading: "Git-native memory for coding agents",
+    lede: "Stop AI agents from repeating old engineering mistakes. Mainline gives coding agents repo memory before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
     primaryCta: "Read the docs",
     secondaryCta: "Read the essay",
     install: "Install",
@@ -162,7 +166,7 @@ export const homeCopy = {
     ],
     failure: {
       eyebrow: "The failure mode",
-      heading: "Reasonable code. Wrong histórical reason.",
+      heading: "Reasonable code. Wrong historical reason.",
       paragraphs: [
         "A coding agent can grep the repo, inspect a TODO, and finish the half-built Redis queue. That may still be the wrong move if the team already abandoned Redis because replication lag caused duplicate billing events.",
         "Code search tells agents what exists now. Mainline records the decision memory that explains what should not be repeated.",
@@ -269,9 +273,9 @@ export const homeCopy = {
     },
   },
   es: {
-    metaTitle: "Mainline - Memoria de intención nativa en Git para coding agents",
+    metaTitle: "Mainline - Memoria nativa en Git para coding agents",
     metaDescription: "Mainline da a los agentes de código el porqué histórico antes de editar lo que existe hoy.",
-    eyebrow: "Memoria de intención nativa en Git",
+    eyebrow: "Memoria nativa en Git para coding agents",
     heading: "Evita que los coding agents repitan errores de ingeniería.",
     lede: "Mainline da a los agentes de código el porqué histórico antes de editar lo que existe hoy: enfoques abandonados, decisiones superadas, restricciones de review, riesgos e intenciones en curso.",
     primaryCta: "Leer docs",
@@ -390,7 +394,7 @@ export const docsCopy = {
     description: "Instala Mainline, inicializa un repositorio y entiende el protocolo de agente para memoria nativa en Git.",
     eyebrow: "Docs",
     heading: "Instala una vez. Deja que los agentes lean y escriban memoria del repo.",
-    intro: "Mainline tiene una CLI humana y un protocolo para agentes. Los humanos inspecciónan memoria; los agentes recuperan contexto antes de editar y registran intent duradero después del trabajo relevante.",
+    intro: "Mainline tiene una CLI humana y un protocolo para agentes. Los humanos inspeccionan memoria; los agentes recuperan contexto antes de editar y registran intent duradero después del trabajo relevante.",
     cards: [
       ["Instalar", "curl -fsSL https://raw.githubusercontent.com/mainline-org/mainline/main/install.sh | bash\nmainline doctor --setup", "El instalador descarga el último GitHub Release y lo verifica con checksums."],
       ["Inicializar repo", "cd your-repo\nmainline init --actor-name \"alice\"", "Init escribe `.mainline/config.toml`, configura refs de Git, crea una identidad de actor e instala guía para agentes."],
@@ -410,11 +414,11 @@ export const docsCopy = {
 
 export const specCopy = {
   en: {
-    title: "Spec - Mainline",
-    description: "The Mainline spec: Git-native actor logs, pin notes, lifecycle, fingerprints, checks, and intent memory.",
-    eyebrow: "Spec",
+    title: "Mainline Intent Record Spec | Git-native agent memory",
+    description: "The Mainline Intent Record Spec covers Git-native actor logs, pin notes, lifecycle, fingerprints, checks, and agent memory.",
+    eyebrow: "Intent Record Spec",
     heading: "Repo memory belongs to the repo.",
-    intro: "Mainline stores engineering intent in Git refs and notes so the memory is portable, inspectable, local-first, and readable across agent vendors.",
+    intro: "Mainline stores engineering intent in Git refs and notes so memory is portable, inspectable, local-first, and readable across agent vendors.",
     storage: [
       ["Actor logs", "refs/heads/_mainline/actor/<id>", "Each developer or agent writes an append-only event log. Only the actor writes to its own log."],
       ["Pin notes", "refs/notes/mainline/intents", "When code lands on main, notes link merged commits back to the intent that produced them."],
@@ -462,7 +466,7 @@ export const specCopy = {
     description: "La spec de Mainline: actor logs, pin notes, lifecycle, fingerprints, checks y memoria de intent nativos en Git.",
     eyebrow: "Spec",
     heading: "La memoria del repo pertenece al repo.",
-    intro: "Mainline guarda engineering intent en refs y notes de Git para que la memoria sea portable, inspecciónable, local-first y legible entre proveedores de agentes.",
+    intro: "Mainline guarda engineering intent en refs y notes de Git para que la memoria sea portable, inspeccionable, local-first y legible entre proveedores de agentes.",
     storage: [
       ["Actor logs", "refs/heads/_mainline/actor/<id>", "Cada developer o agente escribe un event log append-only. Solo el actor escribe en su propio log."],
       ["Pin notes", "refs/notes/mainline/intents", "Cuando el código llega a main, las notes enlazan commits merged con el intent que los produjo."],
@@ -489,7 +493,7 @@ export const blogCopy = {
     description: "Essays on repo memory, AI coding agents, engineering intent, and Git-native collaboration.",
     eyebrow: "Mainline Blog",
     heading: "Writing about repo memory for coding agents.",
-    intro: "Essays on why agents need histórical engineering context before they edit production code.",
+    intro: "Essays on why agents need historical engineering context before they edit production code.",
     category: "Essay",
     postTitle: "Why Coding Agents Need Repo Memory",
     postDescription: "Code tells agents what exists. It does not tell them why.",
@@ -519,8 +523,8 @@ export const blogCopy = {
 export const comparisonsCopy = {
   rag: {
     en: {
-      title: "Mainline vs RAG",
-      description: "RAG helps coding agents find similar code. Mainline helps them understand histórical engineering intent before editing.",
+      title: "Mainline vs RAG for coding agents | Mainline",
+      description: "RAG retrieves similar code. Mainline retrieves historical engineering intent before coding agents edit.",
       eyebrow: "Comparison",
       heading: "Mainline vs RAG",
       intro: "Code retrieval is useful. It is not the same thing as repo memory.",
@@ -549,21 +553,21 @@ export const comparisonsCopy = {
     es: {
       title: "Mainline vs RAG",
       description: "RAG ayuda a encontrar código similar. Mainline ayuda a entender intent histórico antes de editar.",
-      eyebrow: "Comparacion",
+      eyebrow: "Comparación",
       heading: "Mainline vs RAG",
       intro: "La recuperación de código es útil. No es lo mismo que memoria del repo.",
       headers: ["", "RAG", "Mainline"],
       rows: [
         ["Mejor para", "Encontrar código y documentos relevantes", "Registrar decisiones, riesgos, anti-patterns y lifecycle"],
-        ["Momento", "Normalmente durante inspección de código", "Antes de ediciones no triviales"],
+        ["Momento", "Normalmente durante la inspección de código", "Antes de ediciones no triviales"],
         ["Fallo típico", "Recupera la implementación Redis abandonada", "Explica por qué Redis fue abandonado"],
-        ["Sistema de registro", "Vector store o indice del proveedor", "Refs y notes de Git propiedad del repo"],
+        ["Sistema de registro", "Vector store o índice del proveedor", "Refs y notes de Git propiedad del repo"],
       ],
     },
   },
   session: {
     en: {
-      title: "Mainline vs Session Memory",
+      title: "Mainline vs session memory tools | Mainline",
       description: "Session memory captures conversations. Mainline preserves durable engineering intent for future agents and reviewers.",
       eyebrow: "Comparison",
       heading: "Mainline vs session memory",
@@ -596,18 +600,74 @@ export const comparisonsCopy = {
     },
     es: {
       title: "Mainline vs Session Memory",
-      description: "Session memory captura conversaciónes. Mainline preserva engineering intent duradero para futuros agentes y reviewers.",
-      eyebrow: "Comparacion",
+      description: "Session memory captura conversaciones. Mainline preserva engineering intent duradero para futuros agentes y reviewers.",
+      eyebrow: "Comparación",
       heading: "Mainline vs session memory",
       intro: "Los transcripts son evidencia. Futuros agentes necesitan el registro compacto de decisiones.",
-      firstHeading: "Session memory registra lo que paso en una conversación.",
+      firstHeading: "Session memory registra lo que pasó en una conversación.",
       paragraphs: [
         "Puede preservar prompts, respuestas, tool calls, snapshots y diffs. Sirve para replay, audit, rollback y provenance.",
-        "Pero los futuros agentes suelen necesitar la conclusion duradera: Redis fue abandonado, CSV fue deprecated, OAuth middleware debe quedarse hasta mobile v3 sunset y este riesgo de migración fue aceptado con follow-up.",
+        "Pero los futuros agentes suelen necesitar la conclusión duradera: Redis fue abandonado, CSV fue deprecated, OAuth middleware debe quedarse hasta mobile v3 sunset y este riesgo de migración fue aceptado con follow-up.",
       ],
       cards: [
-        ["Session memory", "Transcript de alta fidelidad de una ejecución. Util como evidencia después."],
-        ["Mainline", "Intent memory estructurada y adjunta al repo. Util antes de la siguiente edicion."],
+        ["Session memory", "Transcript de alta fidelidad de una ejecución. Útil como evidencia después."],
+        ["Mainline", "Intent memory estructurada y adjunta al repo. Útil antes de la siguiente edición."],
+      ],
+    },
+  },
+  pr: {
+    en: {
+      title: "Mainline vs PR descriptions | Mainline",
+      description: "PR descriptions explain a diff after it exists. Mainline gives agents and reviewers the engineering intent before the next change.",
+      eyebrow: "Comparison",
+      heading: "Mainline vs PR descriptions",
+      intro: "A PR description is useful review context. It is not durable repo memory for future agents.",
+      firstHeading: "PR descriptions start after the code has already changed.",
+      paragraphs: [
+        "They summarize a branch for the current reviewer, often under deadline pressure. They can be skipped, rewritten, squashed away, or detached from the next agent's working context.",
+        "Mainline records the durable part: the decision, rejected alternatives, risks, anti-patterns, lifecycle, and commit pins that should matter before someone touches the same area again.",
+      ],
+      cards: [
+        ["Before the diff", "Agents can read prior intent before reviving an abandoned approach or deleting a legacy constraint."],
+        ["During review", "Reviewers compare the implementation against stated intent instead of inferring intent from the changed files."],
+        ["After merge", "The record stays attached to the repo, so future humans and agents can retrieve it by file, query, or current work."],
+        ["Not a replacement", "PR descriptions still matter. Mainline makes their durable conclusions queryable after the PR tab is gone."],
+      ],
+    },
+    zh: {
+      title: "Mainline vs PR 描述",
+      description: "PR 描述解释已经改完的 diff；Mainline 把未来还需要继承的工程意图留在 repo 里。",
+      eyebrow: "对比",
+      heading: "Mainline vs PR 描述",
+      intro: "PR 描述很有用，但它更像当次 review 的说明，不是未来 agent 动手前一定能读到的项目记忆。",
+      firstHeading: "PR 描述通常发生在代码已经改完之后。",
+      paragraphs: [
+        "它是写给当前 reviewer 看的，经常赶时间、会被改写、会被 squash，三个月后的 agent 不一定能检索到。",
+        "Mainline 记录的是更耐用的部分：当时为什么这么做、哪些方案放弃了、哪些风险接受了、哪些坑以后别再踩，以及最后落在哪些 commit 上。",
+      ],
+      cards: [
+        ["改之前", "agent 先读历史 intent，别一上来就复活旧方案或删掉保命逻辑。"],
+        ["review 时", "reviewer 不用从 diff 里猜作者想法，可以直接核对实现有没有对上 intent。"],
+        ["合并后", "记录跟着 repo 走，未来可以按文件、关键词或当前任务重新找回来。"],
+        ["不替代 PR", "PR 描述仍然要写。Mainline 只是把值得长期保留的结论变成可检索的 repo memory。"],
+      ],
+    },
+    es: {
+      title: "Mainline vs PR Descriptions",
+      description: "Los PR descriptions explican un diff después de existir. Mainline da intent de ingeniería antes del siguiente cambio.",
+      eyebrow: "Comparación",
+      heading: "Mainline vs PR descriptions",
+      intro: "Un PR description ayuda en review. No es memoria duradera del repo para futuros agentes.",
+      firstHeading: "Los PR descriptions empiezan cuando el código ya cambió.",
+      paragraphs: [
+        "Resumen una branch para el reviewer actual. Pueden saltarse, reescribirse, perderse con squash, o quedar fuera del contexto del siguiente agente.",
+        "Mainline guarda la parte duradera: decisión, alternativas rechazadas, riesgos, anti-patterns, lifecycle y commits que deberían importar antes de tocar esa zona otra vez.",
+      ],
+      cards: [
+        ["Antes del diff", "Los agentes leen intent previo antes de revivir un enfoque abandonado o borrar una restricción legacy."],
+        ["Durante review", "Reviewers comparan la implementación contra el intent declarado, no contra una intención inferida desde los archivos modificados."],
+        ["Después del merge", "El record queda adjunto al repo para que humanos y agentes lo recuperen por archivo, query o trabajo actual."],
+        ["No reemplaza el PR", "Los PR descriptions siguen importando. Mainline hace que sus conclusiones duraderas sean queryables después."],
       ],
     },
   },

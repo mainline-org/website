@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { localizedPath, type Locale } from "../i18n";
+import { seoPages, type SeoPageKind } from "../seoPages";
+
+interface Props {
+  locale: Locale;
+  kind: SeoPageKind;
+}
+
+const { locale, kind } = Astro.props;
+const t = seoPages[kind][locale];
+const relatedHeading = {
+  en: "Related reading",
+  zh: "相关阅读",
+  es: "Lecturas relacionadas",
+}[locale];
+---
+
+<BaseLayout locale={locale} pagePath={t.path} title={t.title} description={t.description}>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+
+  <section class="section shell seo-grid">
+    {t.sections.map((section, index) => (
+      <article class:list={[section.bullets && "wide"]}>
+        <span class="feature-index">{String(index + 1).padStart(2, "0")}</span>
+        <h2>{section.heading}</h2>
+        {section.body.map((paragraph) => <p>{paragraph}</p>)}
+        {section.bullets && (
+          <ul>
+            {section.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        )}
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell seo-callout">
+    <div>
+      <p class="eyebrow">{t.callout.label}</p>
+      <h2>{t.callout.heading}</h2>
+      <p>{t.callout.body}</p>
+    </div>
+    {t.callout.code && (
+      <pre><code>{t.callout.code}</code></pre>
+    )}
+  </section>
+
+  <section class="section shell related-links">
+    <h2>{relatedHeading}</h2>
+    <div>
+      {t.related.map((link) => (
+        <a href={localizedPath(locale, link.href)}>{link.label}</a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

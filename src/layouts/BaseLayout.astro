@@ -19,15 +19,15 @@ interface Props {
 }
 
 const {
-  title = "Mainline - Git-native intent memory for coding agents",
-  description = "Mainline gives AI coding agents the historical why before they edit the current what.",
+  title = "Mainline - Git-native memory for coding agents",
+  description = "Mainline helps AI coding agents understand the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, and in-flight work.",
   locale = defaultLocale,
   pagePath = Astro.url.pathname.replace(/^\/(zh|es)(?=\/|$)/, "") || "/",
   canonicalPath = localizedPath(locale, pagePath),
-  ogImage = "/social-card.svg",
+  ogImage = "/og-image.png",
 } = Astro.props;
 
-const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://usemainline.dev";
+const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://mainline.sh";
 const canonical = new URL(canonicalPath, site).toString();
 const imageUrl = new URL(ogImage, site).toString();
 const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
@@ -49,8 +49,10 @@ const languageLinks = localeCodes.map((code) => ({
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mainline" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -77,7 +79,7 @@ const languageLinks = localeCodes.map((code) => ({
           <a href={localizedPath(locale, "/docs/")}>{ui.nav.docs}</a>
           <a href={localizedPath(locale, "/spec/")}>{ui.nav.spec}</a>
           <a href={localizedPath(locale, "/blog/")}>{ui.nav.blog}</a>
-          <a href={localizedPath(locale, "/comparisons/mainline-vs-rag/")}>{ui.nav.compare}</a>
+          <a href={localizedPath(locale, "/compare/rag/")}>{ui.nav.compare}</a>
         </div>
         <div class="nav-actions">
           <div class="language-switcher" aria-label={ui.language}>
@@ -111,13 +113,14 @@ const languageLinks = localeCodes.map((code) => ({
           <h2>{ui.footer.product}</h2>
           <a href={localizedPath(locale, "/docs/")}>{ui.nav.docs}</a>
           <a href={localizedPath(locale, "/spec/")}>{ui.nav.spec}</a>
-          <a href={localizedPath(locale, "/comparisons/mainline-vs-session-memory/")}>{ui.footer.sessionMemory}</a>
+          <a href={localizedPath(locale, "/install/")}>{ui.footer.install}</a>
+          <a href={localizedPath(locale, "/compare/session-memory/")}>{ui.footer.sessionMemory}</a>
         </div>
         <div>
           <h2>{ui.footer.writing}</h2>
           <a href={localizedPath(locale, "/blog/")}>{ui.nav.blog}</a>
           <a href={localizedPath(locale, "/blog/why-coding-agents-need-repo-memory/")}>{ui.footer.repoMemoryEssay}</a>
-          <a href="mailto:hello@usemainline.dev">{ui.footer.designPartners}</a>
+          <a href="mailto:hello@mainline.sh">{ui.footer.designPartners}</a>
         </div>
       </div>
     </footer>

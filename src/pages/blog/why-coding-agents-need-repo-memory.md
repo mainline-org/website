@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/ArticleLayout.astro
 title: "Why Coding Agents Need Repo Memory"
+metaTitle: "Why Coding Agents Need Repo Memory | Mainline"
 subtitle: "Code tells agents what exists. It does not tell them why."
 description: "AI coding agents can inspect code, but they need repo memory to understand abandoned approaches, superseded decisions, risks, and constraints before editing."
 publishDate: "2026-05-04"
@@ -359,3 +360,10 @@ If you are running coding agents on a real codebase and have felt this problem, 
 We are looking for design partners who use AI agents for non-trivial engineering work and want their repos to remember why decisions were made.
 
 **Mainline is for teams who believe coding agents should not just read code. They should inherit engineering memory.**
+
+## Related reading
+
+- [What is repo memory for coding agents?](/use-cases/repo-memory-for-coding-agents/)
+- [Mainline vs RAG for coding agents](/compare/rag/)
+- [Mainline vs session memory tools](/compare/session-memory/)
+- [Mainline Intent Record Spec](/spec/)

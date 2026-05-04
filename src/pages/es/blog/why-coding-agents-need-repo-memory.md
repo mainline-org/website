@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title: "Por qué los Coding Agents Necesitan Memoria del Repo"
+metaTitle: "Por qué los Coding Agents Necesitan Memoria del Repo | Mainline"
 subtitle: "El código dice qué existe. No dice por qué."
 description: "Los AI coding agents pueden leer código, pero necesitan memoria del repo para entender enfoques abandonados, decisiones superadas, riesgos y restricciones antes de editar."
 publishDate: "2026-05-04"
@@ -78,7 +79,7 @@ No es "escribe una función", "arregla un type error" o "encuentra donde está d
 
 El problema duro es:
 
-> Debe hacerse este cambio, dado lo que el equipo ya aprendió?
+> ¿Debe hacerse este cambio, dado lo que el equipo ya aprendió?
 
 ## Los artifacts existentes no alcanzan
 
@@ -106,14 +107,14 @@ Deberia ser el engineering intent.
 
 Un buen record de repo memory debería responder preguntas duraderas:
 
-- Por qué existio este trabajo?
-- Que decisión tomó el equipo?
-- Que alternativas fueron rechazadas?
-- Que riesgos fueron aceptados?
-- Que anti-patterns deben evitar futuros agentes?
-- Que archivos o subsistemás toca?
+- ¿Por qué existió este trabajo?
+- ¿Qué decisión tomó el equipo?
+- ¿Qué alternativas fueron rechazadas?
+- ¿Qué riesgos fueron aceptados?
+- ¿Qué anti-patterns deben evitar futuros agentes?
+- ¿Qué archivos o subsistemas toca?
 - Este intent fue merged, abandoned, superseded o reverted?
-- Que commits lo implementaron?
+- ¿Qué commits lo implementaron?
 
 No es un diario.
 
@@ -127,7 +128,7 @@ Es la parte duradera de la memoria de ingeniería: lo que debería importar la s
 
 Muchas herramientas muestran contexto después del hecho.
 
-Un PR description explica el diff cuando el código ya cambio. Un review comenta el resultado cuando la branch ya existe. Un session replay ayuda a inspeccionar que paso después de que el agente actuo.
+Un PR description explica el diff cuando el código ya cambió. Un review comenta el resultado cuando la branch ya existe. Un session replay ayuda a inspeccionar qué pasó después de que el agente actuó.
 
 El momento más valioso es anterior.
 
@@ -137,7 +138,7 @@ Antes de que borre el fallback, reviva el enfoque abandonado, agregue una column
 
 El agente debería poder preguntar:
 
-> Que debo saber sobre este repo antes de tocar esta parte del código?
+> ¿Qué debo saber sobre este repo antes de tocar esta parte del código?
 
 Ese es el primitive que falta.
 
@@ -151,11 +152,11 @@ Si la memoria del repo es importante, no debería vivir solo dentro del chat his
 
 La memoria de ingeniería del repo debe pertenecer al repo.
 
-Eso significa que debe ser portable, inspecciónable, versionada, local-first, agent-agnostic, usable sin una cuenta SaaS y durable entre herramientas.
+Eso significa que debe ser portable, inspeccionable, versionada, local-first, agent-agnostic, usable sin una cuenta SaaS y durable entre herramientas.
 
 Git es el sustrato obvio.
 
-Los developers ya confian en Git como system of record del código. Los equipos ya hacen fetch, push, branch, review, merge y audit con Git. Si la memoria está atada al repo, futuros agentes y humanos pueden recuperarla sin importar que coding assistant la produjo.
+Los developers ya confían en Git como system of record del código. Los equipos ya hacen fetch, push, branch, review, merge y audit con Git. Si la memoria está atada al repo, futuros agentes y humanos pueden recuperarla sin importar qué coding assistant la produjo.
 
 Esto importa porque el mercado de agentes se mueve rápido.
 
@@ -293,17 +294,17 @@ Mainline es el tejido conectivo: el engineering intent duradero que futuros agen
 
 ## Por qué ahora
 
-Hace un ano, este problema era molesto.
+Hace un año, este problema era molesto.
 
-Pronto sera estructural.
+Pronto será estructural.
 
-A medida que los coding agents sean más capaces, los equipos correran más de ellos. Trabajaran en repos más grandes, sistemás más viejos y zonas más sensibles. Abriran más PRs. Haran más cambios plausibles.
+A medida que los coding agents sean más capaces, los equipos correrán más de ellos. Trabajarán en repos más grandes, sistemas más viejos y zonas más sensibles. Abrirán más PRs. Harán más cambios plausibles.
 
 Los cambios plausibles son los peligrosos.
 
 Un syntax error es fácil de atrapar.
 
-Una reintroduccion plausible de un enfoque abandonado es más difícil. Remover plausiblemente una restricción legacy es más difícil. Actualizar tanto APIs deprecated como actuales es más difícil. Una migración plausible que choca con otra en curso es más difícil.
+Una reintroducción plausible de un enfoque abandonado es más difícil. Remover plausiblemente una restricción legacy es más difícil. Actualizar tanto APIs deprecated como actuales es más difícil. Una migración plausible que choca con otra en curso es más difícil.
 
 El agente no necesita más confianza.
 
@@ -311,7 +312,7 @@ Necesita memoria.
 
 ## El repo del futuro tiene memoria
 
-En el futuro, un repo serio no tendra solo:
+En el futuro, un repo serio no tendrá solo:
 
 ```text
 README.md
@@ -320,16 +321,23 @@ AGENTS.md
 .github/
 ```
 
-También tendra una capa de memoria duradera que los agentes pueden consultar.
+También tendrá una capa de memoria duradera que los agentes pueden consultar.
 
 Antes de editar auth code, un agente debería conocer decisiones previas de auth. Antes de cambiar billing, debería conocer enfoques de billing abandonados. Antes de tocar una migración, debería conocer riesgos no resueltos. Antes de borrar algo que parece muerto, debería saber si el equipo lo mantuvo vivo a propósito.
 
 Esa memoria debe ser abierta, portable, Git-native y propiedad del repo.
 
-Esa es la direccion que exploramos con Mainline.
+Esa es la dirección que exploramos con Mainline.
 
-Si estas corriendo coding agents sobre un codebase real y has sentido este problema, queremos hablar.
+Si estás corriendo coding agents sobre un codebase real y has sentido este problema, queremos hablar.
 
 Buscamos design partners que usen AI agents para trabajo de ingeniería no trivial y quieran que sus repos recuerden por qué se tomaron decisiones.
 
 **Mainline es para equipos que creen que los coding agents no solo deben leer código. Deben heredar memoria de ingeniería.**
+
+## Lecturas relacionadas
+
+- [Qué es repo memory para coding agents](/es/use-cases/repo-memory-for-coding-agents/)
+- [Mainline vs RAG](/es/compare/rag/)
+- [Mainline vs session memory](/es/compare/session-memory/)
+- [Mainline Intent Record Spec](/es/spec/)

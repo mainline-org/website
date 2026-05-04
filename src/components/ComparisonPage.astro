@@ -4,16 +4,20 @@ import { comparisonsCopy, type Locale } from "../i18n";
 
 interface Props {
   locale: Locale;
-  kind: "rag" | "session";
+  kind: "rag" | "session" | "pr";
 }
 
 const { locale, kind } = Astro.props;
 const t = comparisonsCopy[kind][locale];
 const ragCopy = comparisonsCopy.rag[locale];
 const sessionCopy = comparisonsCopy.session[locale];
-const pagePath = kind === "rag"
-  ? "/comparisons/mainline-vs-rag/"
-  : "/comparisons/mainline-vs-session-memory/";
+const prCopy = comparisonsCopy.pr[locale];
+const pagePathByKind = {
+  rag: "/compare/rag/",
+  session: "/compare/session-memory/",
+  pr: "/compare/pr-descriptions/",
+};
+const pagePath = pagePathByKind[kind];
 ---
 
 <BaseLayout locale={locale} pagePath={pagePath} title={t.title} description={t.description}>
@@ -34,7 +38,7 @@ const pagePath = kind === "rag"
         </div>
       ))}
     </section>
-  ) : (
+  ) : kind === "session" ? (
     <>
       <section class="section shell two-column">
         <div>
@@ -49,6 +53,27 @@ const pagePath = kind === "rag"
         {sessionCopy.cards.map(([heading, body]) => (
           <article>
             <h2>{heading}</h2>
+            <p>{body}</p>
+          </article>
+        ))}
+      </section>
+    </>
+  ) : (
+    <>
+      <section class="section shell two-column">
+        <div>
+          <h2>{prCopy.firstHeading}</h2>
+        </div>
+        <div class="rich-text">
+          {prCopy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+
+      <section class="section shell feature-grid">
+        {prCopy.cards.map(([heading, body], index) => (
+          <article>
+            <span class="feature-index">{String(index + 1).padStart(2, "0")}</span>
+            <h3>{heading}</h3>
             <p>{body}</p>
           </article>
         ))}

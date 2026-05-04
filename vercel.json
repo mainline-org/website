@@ -1,5 +1,19 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    { "source": "/comparisons/mainline-vs-rag", "destination": "/compare/rag/", "permanent": true },
+    { "source": "/comparisons/mainline-vs-rag/", "destination": "/compare/rag/", "permanent": true },
+    { "source": "/comparisons/mainline-vs-session-memory", "destination": "/compare/session-memory/", "permanent": true },
+    { "source": "/comparisons/mainline-vs-session-memory/", "destination": "/compare/session-memory/", "permanent": true },
+    { "source": "/zh/comparisons/mainline-vs-rag", "destination": "/zh/compare/rag/", "permanent": true },
+    { "source": "/zh/comparisons/mainline-vs-rag/", "destination": "/zh/compare/rag/", "permanent": true },
+    { "source": "/zh/comparisons/mainline-vs-session-memory", "destination": "/zh/compare/session-memory/", "permanent": true },
+    { "source": "/zh/comparisons/mainline-vs-session-memory/", "destination": "/zh/compare/session-memory/", "permanent": true },
+    { "source": "/es/comparisons/mainline-vs-rag", "destination": "/es/compare/rag/", "permanent": true },
+    { "source": "/es/comparisons/mainline-vs-rag/", "destination": "/es/compare/rag/", "permanent": true },
+    { "source": "/es/comparisons/mainline-vs-session-memory", "destination": "/es/compare/session-memory/", "permanent": true },
+    { "source": "/es/comparisons/mainline-vs-session-memory/", "destination": "/es/compare/session-memory/", "permanent": true }
+  ]
 }

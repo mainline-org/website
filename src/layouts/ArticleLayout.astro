@@ -4,6 +4,7 @@ import { blogCopy, localizedPath, type Locale } from "../i18n";
 
 const {
   title,
+  metaTitle,
   subtitle,
   description,
   publishDate,
@@ -17,7 +18,7 @@ const canonicalPath = localizedPath(currentLocale, pagePath);
 ---
 
 <BaseLayout
-  title={title}
+  title={metaTitle ?? title}
   description={description ?? subtitle}
   locale={currentLocale}
   pagePath={pagePath}

@@ -235,6 +235,10 @@ h1 {
   max-width: 11ch;
 }
 
+.hero h1 {
+  max-width: 12.5ch;
+}
+
 .hero-lede {
   max-width: 660px;
   color: var(--muted);
@@ -305,7 +309,9 @@ h1 {
 .intent-card,
 .docs-grid article,
 .feature-grid article,
-.split-cards article {
+.split-cards article,
+.seo-grid article,
+.install-grid article {
   border: 2px solid var(--ink);
   border-radius: 8px;
   background: var(--panel);
@@ -449,7 +455,9 @@ h1 {
 .feature-grid,
 .docs-grid,
 .architecture-grid,
-.split-cards {
+.split-cards,
+.seo-grid,
+.install-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
@@ -462,7 +470,9 @@ h1 {
 .feature-grid article,
 .docs-grid article,
 .split-cards article,
-.architecture-grid article {
+.architecture-grid article,
+.seo-grid article,
+.install-grid article {
   padding: 24px;
 }
 
@@ -476,7 +486,9 @@ h1 {
 .feature-grid h3,
 .docs-grid h2,
 .split-cards h2,
-.architecture-grid h2 {
+.architecture-grid h2,
+.seo-grid h2,
+.install-grid h2 {
   margin-bottom: 12px;
   font-family: "Iowan Old Style", "Charter", Georgia, serif;
   font-size: 1.65rem;
@@ -486,8 +498,91 @@ h1 {
 .feature-grid p,
 .docs-grid p,
 .split-cards p,
-.architecture-grid p {
+.architecture-grid p,
+.seo-grid p,
+.install-grid p {
   color: var(--muted);
+}
+
+.seo-grid article.wide {
+  grid-column: span 2;
+}
+
+.seo-grid ul,
+.rich-text ul {
+  margin: 18px 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.seo-grid li,
+.rich-text li {
+  margin: 8px 0;
+}
+
+.seo-callout {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: stretch;
+  border-block: 2px solid var(--ink);
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.seo-callout > div {
+  display: grid;
+  align-content: center;
+}
+
+.seo-callout p:not(.eyebrow) {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.seo-callout pre,
+.install-grid pre {
+  overflow: auto;
+  border-radius: 8px;
+  background: #191b18;
+  color: #d7f7e9;
+}
+
+.seo-callout pre {
+  min-height: 220px;
+  padding: 24px;
+  box-shadow: 6px 6px 0 var(--green);
+}
+
+.install-grid pre {
+  margin: 18px 0;
+  padding: 18px;
+  font-size: 0.9rem;
+}
+
+.related-links {
+  padding-top: 42px;
+}
+
+.related-links h2 {
+  margin-bottom: 18px;
+  font-family: "Iowan Old Style", "Charter", Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+.related-links div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.related-links a {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 10px 13px;
+  background: var(--panel);
+  font-weight: 800;
 }
 
 .workflow {
@@ -795,6 +890,7 @@ html:lang(zh-CN) .article-body {
   .hero,
   .two-column,
   .workflow,
+  .seo-callout,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -890,9 +986,15 @@ html:lang(zh-CN) .article-body {
   .docs-grid,
   .architecture-grid,
   .split-cards,
+  .seo-grid,
+  .install-grid,
   .proof-grid,
   .lifecycle-row {
     grid-template-columns: 1fr;
+  }
+
+  .seo-grid article.wide {
+    grid-column: auto;
   }
 
   .section {

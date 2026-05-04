@@ -1,6 +1,7 @@
 ---
 layout: ../../../layouts/ArticleLayout.astro
 title: "为什么 AI 写代码前，得先知道项目以前踩过哪些坑"
+metaTitle: "为什么 AI 写代码前要知道项目踩过哪些坑 | Mainline"
 subtitle: "代码告诉 AI 现在有什么，但很少告诉它当时为什么这么做。"
 description: "AI coding agents 可以读代码、改代码、跑测试，但它们更需要知道团队以前踩过哪些坑、哪些方案已经放弃、哪些地方不能乱动。"
 publishDate: "2026-05-04"
@@ -345,3 +346,10 @@ agent 做 migration 前，先知道还有哪些风险没关。
 我们正在找 design partners：已经把 AI agents 用进非平凡工程流程，并且希望 repo 记住“为什么”的团队。
 
 **Mainline 给这样的团队用：不满足于让 AI 只读代码，而是希望 AI 继承项目记忆。**
+
+## 相关阅读
+
+- [什么是 coding agent 的 repo memory？](/zh/use-cases/repo-memory-for-coding-agents/)
+- [Mainline vs RAG](/zh/compare/rag/)
+- [Mainline vs session memory](/zh/compare/session-memory/)
+- [Mainline Intent Record Spec](/zh/spec/)

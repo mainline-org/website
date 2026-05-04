@@ -1,0 +1,44 @@
+# Mainline
+
+Mainline is Git-native memory for coding agents. It gives AI coding agents the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, anti-patterns, and in-flight work.
+
+Canonical site: https://mainline.sh/
+Repository: https://github.com/mainline-org/mainline
+
+## Core pages
+
+- Home: https://mainline.sh/
+- Docs: https://mainline.sh/docs/
+- Spec: https://mainline.sh/spec/
+- Install: https://mainline.sh/install/
+- Blog essay: https://mainline.sh/blog/why-coding-agents-need-repo-memory/
+
+## Category pages
+
+- Repo memory for coding agents: https://mainline.sh/use-cases/repo-memory-for-coding-agents/
+- Engineering intent memory: https://mainline.sh/use-cases/engineering-intent-memory/
+- Intent-aware AI PR review: https://mainline.sh/use-cases/ai-pr-review/
+
+## Comparisons
+
+- Mainline vs RAG: https://mainline.sh/compare/rag/
+- Mainline vs session memory: https://mainline.sh/compare/session-memory/
+- Mainline vs PR descriptions: https://mainline.sh/compare/pr-descriptions/
+
+## Install commands
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mainline-org/mainline/main/install.sh | bash
+mainline doctor --setup
+mainline init --actor-name "alice"
+```
+
+Alternative:
+
+```bash
+go install github.com/mainline-org/mainline@latest
+```
+
+## Product boundaries
+
+Mainline is not a Git replacement, PR system, session recorder, productivity dashboard, or RAG index. It records durable engineering intent owned by the repo and exposes that memory before future edits.
