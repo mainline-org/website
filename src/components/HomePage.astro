@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { homeCopy, localizedPath, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = homeCopy[locale];
+---
+
+<BaseLayout
+  locale={locale}
+  pagePath="/"
+  title={t.metaTitle}
+  description={t.metaDescription}
+>
+  <section class="hero shell">
+    <div class="hero-copy">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h1>{t.heading}</h1>
+      <p class="hero-lede">{t.lede}</p>
+      <div class="hero-actions">
+        <a class="button primary" href={localizedPath(locale, "/docs/")}>{t.primaryCta}</a>
+        <a class="button secondary" href={localizedPath(locale, "/blog/why-coding-agents-need-repo-memory/")}>{t.secondaryCta}</a>
+      </div>
+      <div class="install-strip" aria-label={t.installAria}>
+        <span>{t.install}</span>
+        <code>curl -fsSL https://raw.githubusercontent.com/mainline-org/mainline/main/install.sh | bash</code>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label={t.visualAria}>
+      <div class="terminal-card">
+        <div class="window-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <pre><code>{t.terminalSnippet}</code></pre>
+      </div>
+      <div class="intent-card">
+        <p>{t.intentCard.label}</p>
+        <h2>{t.intentCard.title}</h2>
+        <dl>
+          {t.intentCard.rows.map(([term, description]) => (
+            <div><dt>{term}</dt><dd>{description}</dd></div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-band">
+    <div class="shell proof-grid">
+      {t.metrics.map(([metric, label]) => (
+        <div>
+          <span class="metric">{metric}</span>
+          <p>{label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <p class="eyebrow">{t.failure.eyebrow}</p>
+      <h2>{t.failure.heading}</h2>
+    </div>
+    <div class="rich-text">
+      {t.failure.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+
+  <section class="section shell feature-grid">
+    {t.features.map(([heading, body], index) => (
+      <article>
+        <span class="feature-index">{String(index + 1).padStart(2, "0")}</span>
+        <h3>{heading}</h3>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell workflow">
+    <div>
+      <p class="eyebrow">{t.workflow.eyebrow}</p>
+      <h2>{t.workflow.heading}</h2>
+    </div>
+    <ol>
+      {t.workflow.steps.map(([command, label]) => (
+        <li><code>{command}</code><span>{label}</span></li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section shell split-cards">
+    {t.audiences.map(([heading, body]) => (
+      <article>
+        <h2>{heading}</h2>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell final-cta">
+    <p class="eyebrow">{t.cta.eyebrow}</p>
+    <h2>{t.cta.heading}</h2>
+    <p>{t.cta.text}</p>
+    <div class="hero-actions">
+      <a class="button primary" href="https://github.com/mainline-org/mainline">{t.cta.github}</a>
+      <a class="button secondary" href="mailto:hello@usemainline.dev">{t.cta.designPartner}</a>
+    </div>
+  </section>
+</BaseLayout>

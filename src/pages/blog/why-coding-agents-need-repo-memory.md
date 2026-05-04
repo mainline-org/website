@@ -4,7 +4,8 @@ title: "Why Coding Agents Need Repo Memory"
 subtitle: "Code tells agents what exists. It does not tell them why."
 description: "AI coding agents can inspect code, but they need repo memory to understand abandoned approaches, superseded decisions, risks, and constraints before editing."
 publishDate: "2026-05-04"
-canonicalPath: "/blog/why-coding-agents-need-repo-memory/"
+locale: "en"
+pagePath: "/blog/why-coding-agents-need-repo-memory/"
 ---
 
 AI coding agents are getting fast.

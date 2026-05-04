@@ -1,17 +1,29 @@
 ---
 import "../styles/global.css";
+import {
+  defaultLocale,
+  localeCodes,
+  locales,
+  localizedPath,
+  uiCopy,
+  type Locale,
+} from "../i18n";
 
 interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  locale?: Locale;
+  pagePath?: string;
   ogImage?: string;
 }
 
 const {
   title = "Mainline - Git-native intent memory for coding agents",
   description = "Mainline gives AI coding agents the historical why before they edit the current what.",
-  canonicalPath = Astro.url.pathname,
+  locale = defaultLocale,
+  pagePath = Astro.url.pathname.replace(/^\/(zh|es)(?=\/|$)/, "") || "/",
+  canonicalPath = localizedPath(locale, pagePath),
   ogImage = "/social-card.svg",
 } = Astro.props;
 
@@ -19,10 +31,18 @@ const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://usemainline.d
 const canonical = new URL(canonicalPath, site).toString();
 const imageUrl = new URL(ogImage, site).toString();
 const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
+const ui = uiCopy[locale];
+const htmlLang = locales[locale].htmlLang;
+const languageLinks = localeCodes.map((code) => ({
+  code,
+  label: locales[code].shortLabel,
+  href: localizedPath(code, pagePath),
+  hreflang: locales[code].hreflang,
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,23 +59,40 @@ const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    {languageLinks.map((link) => (
+      <link rel="alternate" hreflang={link.hreflang} href={new URL(link.href, site).toString()} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(localizedPath(defaultLocale, pagePath), site).toString()} />
     <slot name="head" />
   </head>
   <body>
-    <a class="skip-link" href="#content">Skip to content</a>
+    <a class="skip-link" href="#content">{ui.skip}</a>
     <header class="site-header">
-      <nav class="nav shell" aria-label="Primary navigation">
-        <a class="brand" href="/" aria-label="Mainline home">
+      <nav class="nav shell" aria-label={ui.primaryNav}>
+        <a class="brand" href={localizedPath(locale, "/")} aria-label={ui.homeLabel}>
           <span class="brand-mark" aria-hidden="true">M</span>
           <span>Mainline</span>
         </a>
         <div class="nav-links">
-          <a href="/docs/">Docs</a>
-          <a href="/spec/">Spec</a>
-          <a href="/blog/">Blog</a>
-          <a href="/comparisons/mainline-vs-rag/">Compare</a>
+          <a href={localizedPath(locale, "/docs/")}>{ui.nav.docs}</a>
+          <a href={localizedPath(locale, "/spec/")}>{ui.nav.spec}</a>
+          <a href={localizedPath(locale, "/blog/")}>{ui.nav.blog}</a>
+          <a href={localizedPath(locale, "/comparisons/mainline-vs-rag/")}>{ui.nav.compare}</a>
         </div>
-        <a class="nav-cta" href="https://github.com/mainline-org/mainline">GitHub</a>
+        <div class="nav-actions">
+          <div class="language-switcher" aria-label={ui.language}>
+            {languageLinks.map((link) => (
+              <a
+                href={link.href}
+                hreflang={link.hreflang}
+                class:list={[link.code === locale && "active"]}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <a class="nav-cta" href="https://github.com/mainline-org/mainline">{ui.github}</a>
+        </div>
       </nav>
     </header>
     <main id="content">
@@ -64,23 +101,23 @@ const pageTitle = title.includes("Mainline") ? title : `${title} - Mainline`;
     <footer class="site-footer">
       <div class="shell footer-grid">
         <div>
-          <a class="brand footer-brand" href="/">
+          <a class="brand footer-brand" href={localizedPath(locale, "/")}>
             <span class="brand-mark" aria-hidden="true">M</span>
             <span>Mainline</span>
           </a>
-          <p>Git-native intent memory for AI-assisted engineering.</p>
+          <p>{ui.footer.tagline}</p>
         </div>
         <div>
-          <h2>Product</h2>
-          <a href="/docs/">Docs</a>
-          <a href="/spec/">Spec</a>
-          <a href="/comparisons/mainline-vs-session-memory/">Session memory</a>
+          <h2>{ui.footer.product}</h2>
+          <a href={localizedPath(locale, "/docs/")}>{ui.nav.docs}</a>
+          <a href={localizedPath(locale, "/spec/")}>{ui.nav.spec}</a>
+          <a href={localizedPath(locale, "/comparisons/mainline-vs-session-memory/")}>{ui.footer.sessionMemory}</a>
         </div>
         <div>
-          <h2>Writing</h2>
-          <a href="/blog/">Blog</a>
-          <a href="/blog/why-coding-agents-need-repo-memory/">Repo memory essay</a>
-          <a href="mailto:hello@usemainline.dev">Design partners</a>
+          <h2>{ui.footer.writing}</h2>
+          <a href={localizedPath(locale, "/blog/")}>{ui.nav.blog}</a>
+          <a href={localizedPath(locale, "/blog/why-coding-agents-need-repo-memory/")}>{ui.footer.repoMemoryEssay}</a>
+          <a href="mailto:hello@usemainline.dev">{ui.footer.designPartners}</a>
         </div>
       </div>
     </footer>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { docsCopy, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = docsCopy[locale];
+---
+
+<BaseLayout locale={locale} pagePath="/docs/" title={t.title} description={t.description}>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+
+  <section class="section shell docs-grid">
+    {t.cards.map(([heading, command, body]) => (
+      <article>
+        <h2>{heading}</h2>
+        <pre><code>{command}</code></pre>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell two-column">
+    <div>
+      <p class="eyebrow">{t.context.eyebrow}</p>
+      <h2>{t.context.heading}</h2>
+    </div>
+    <div class="rich-text">
+      {t.context.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { specCopy, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = specCopy[locale];
+---
+
+<BaseLayout locale={locale} pagePath="/spec/" title={t.title} description={t.description}>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+
+  <section class="section shell architecture-grid">
+    {t.storage.map(([label, ref, body]) => (
+      <article>
+        <span class="feature-index">{label}</span>
+        <h2><code>{ref}</code></h2>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section shell lifecycle">
+    <p class="eyebrow">{t.lifecycle.eyebrow}</p>
+    <h2>{t.lifecycle.heading}</h2>
+    <div class="lifecycle-row" aria-label={t.lifecycle.aria}>
+      {t.lifecycle.states.map((state) => <span>{state}</span>)}
+    </div>
+    <p>{t.lifecycle.text}</p>
+  </section>
+
+  <section class="section shell docs-grid">
+    {t.cards.map(([heading, body]) => (
+      <article>
+        <h2>{heading}</h2>
+        <p>{body}</p>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { comparisonsCopy, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+  kind: "rag" | "session";
+}
+
+const { locale, kind } = Astro.props;
+const t = comparisonsCopy[kind][locale];
+const ragCopy = comparisonsCopy.rag[locale];
+const sessionCopy = comparisonsCopy.session[locale];
+const pagePath = kind === "rag"
+  ? "/comparisons/mainline-vs-rag/"
+  : "/comparisons/mainline-vs-session-memory/";
+---
+
+<BaseLayout locale={locale} pagePath={pagePath} title={t.title} description={t.description}>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+
+  {kind === "rag" ? (
+    <section class="section shell comparison-table">
+      <div class="comparison-row header">
+        {ragCopy.headers.map((header) => <span>{header}</span>)}
+      </div>
+      {ragCopy.rows.map((row) => (
+        <div class="comparison-row">
+          {row.map((cell) => <span>{cell}</span>)}
+        </div>
+      ))}
+    </section>
+  ) : (
+    <>
+      <section class="section shell two-column">
+        <div>
+          <h2>{sessionCopy.firstHeading}</h2>
+        </div>
+        <div class="rich-text">
+          {sessionCopy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+
+      <section class="section shell split-cards">
+        {sessionCopy.cards.map(([heading, body]) => (
+          <article>
+            <h2>{heading}</h2>
+            <p>{body}</p>
+          </article>
+        ))}
+      </section>
+    </>
+  )}
+</BaseLayout>

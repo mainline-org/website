@@ -1,27 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogIndexPage from "../../components/BlogIndexPage.astro";
 ---
 
-<BaseLayout
-  title="Blog - Mainline"
-  description="Essays on repo memory, AI coding agents, engineering intent, and Git-native collaboration."
->
-  <section class="page-hero shell compact">
-    <p class="eyebrow">Mainline Blog</p>
-    <h1>Writing about repo memory for coding agents.</h1>
-    <p>
-      Essays on why agents need historical engineering context before they edit
-      production code.
-    </p>
-  </section>
-  <section class="section shell post-list">
-    <a class="post-row" href="/blog/why-coding-agents-need-repo-memory/">
-      <span>Essay</span>
-      <div>
-        <h2>Why Coding Agents Need Repo Memory</h2>
-        <p>Code tells agents what exists. It does not tell them why.</p>
-      </div>
-      <time datetime="2026-05-04">2026-05-04</time>
-    </a>
-  </section>
-</BaseLayout>
+<BlogIndexPage locale="en" />

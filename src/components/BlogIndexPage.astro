@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { blogCopy, localizedPath, type Locale } from "../i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = blogCopy[locale];
+---
+
+<BaseLayout locale={locale} pagePath="/blog/" title={t.title} description={t.description}>
+  <section class="page-hero shell compact">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.heading}</h1>
+    <p>{t.intro}</p>
+  </section>
+  <section class="section shell post-list">
+    <a class="post-row" href={localizedPath(locale, "/blog/why-coding-agents-need-repo-memory/")}>
+      <span>{t.category}</span>
+      <div>
+        <h2>{t.postTitle}</h2>
+        <p>{t.postDescription}</p>
+      </div>
+      <time datetime="2026-05-04">2026-05-04</time>
+    </a>
+  </section>
+</BaseLayout>
