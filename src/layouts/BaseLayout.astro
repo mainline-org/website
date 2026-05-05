@@ -97,8 +97,8 @@ const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
     <meta name="author" content={author} />
     <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Mainline" />
     <meta property="og:title" content={openGraphTitle} />
@@ -129,7 +129,9 @@ const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
     <header class="site-header">
       <nav class="nav shell" aria-label={ui.primaryNav}>
         <a class="brand" href={localizedPath(locale, "/")} aria-label={ui.homeLabel}>
-          <span class="brand-mark" aria-hidden="true">M</span>
+          <span class="brand-mark" aria-hidden="true">
+            <img src="/mainline_logo.svg" alt="" width="34" height="34" decoding="async" />
+          </span>
           <span>Mainline</span>
         </a>
         <div class="nav-links">
@@ -161,7 +163,9 @@ const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
       <div class="shell footer-grid">
         <div>
           <a class="brand footer-brand" href={localizedPath(locale, "/")}>
-            <span class="brand-mark" aria-hidden="true">M</span>
+            <span class="brand-mark" aria-hidden="true">
+              <img src="/mainline_logo.svg" alt="" width="34" height="34" decoding="async" />
+            </span>
             <span>Mainline</span>
           </a>
           <p>{ui.footer.tagline}</p>

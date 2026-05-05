@@ -5,6 +5,7 @@ export const organizationJsonLd = {
   "@type": "Organization",
   name: "Mainline",
   url: siteUrl,
+  logo: new URL("/mainline_logo.svg", siteUrl).toString(),
   email: "hello@mainline.sh",
   sameAs: [
     "https://github.com/mainline-org/mainline",
@@ -47,6 +48,7 @@ export const softwareJsonLd = {
   applicationCategory: "DeveloperApplication",
   operatingSystem: "macOS, Linux",
   url: siteUrl,
+  image: new URL("/mainline_logo.svg", siteUrl).toString(),
   codeRepository: "https://github.com/mainline-org/mainline",
   author: {
     "@type": "Organization",
