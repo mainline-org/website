@@ -2,44 +2,44 @@
   <rect width="1200" height="630" fill="#f7f5ef"/>
   <path d="M0 80h1200M0 160h1200M0 240h1200M0 320h1200M0 400h1200M0 480h1200M0 560h1200M80 0v630M160 0v630M240 0v630M320 0v630M400 0v630M480 0v630M560 0v630M640 0v630M720 0v630M800 0v630M880 0v630M960 0v630M1040 0v630M1120 0v630" stroke="#151511" stroke-opacity=".07"/>
   <rect x="72" y="72" width="1056" height="486" rx="18" fill="#fffdf7" stroke="#151511" stroke-width="6"/>
-  <g transform="translate(106 92) scale(.118)">
-    <rect width="1024" height="1024" fill="#fffdf7"/>
-    <rect x="232" y="260" width="560" height="52" rx="26" fill="#050505"/>
-    <path d="M506 298c-70 72-106 141-96 221" fill="none" stroke="#050505" stroke-width="78" stroke-linecap="round"/>
-    <path d="M478 236c25-26 68-26 94 0 25-18 64-12 82 14 22 30 12 73-22 90-22 11-48 7-66-8-26 23-68 22-92-2-21 19-56 20-78 3-30-24-29-70 1-94 23-18 57-19 81-3z" fill="#050505"/>
-    <g fill="#fffdf7" stroke="#050505" stroke-width="14" stroke-linecap="round">
-      <path d="M454 256v52"/>
-      <path d="M500 246v64"/>
-      <path d="M548 246v64"/>
-      <path d="M596 258v52"/>
+  <svg x="94" y="92" width="132" height="132" viewBox="230 260 940 940" aria-hidden="true">
+    <title>Mainline monkey logo</title>
+    <desc>Original Mainline monkey logo hanging from a bar with a scroll.</desc>
+    <line x1="335" y1="358" x2="1075" y2="358" stroke="#000" stroke-width="56" stroke-linecap="round"/>
+    <path d="M655 358 C610 425 576 496 591 580" fill="none" stroke="#000" stroke-width="88" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M842 740 C949 782 1006 862 1001 947" fill="none" stroke="#000" stroke-width="84" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="506" cy="610" r="78" fill="#000"/>
+    <circle cx="515" cy="617" r="44" fill="#fff"/>
+    <circle cx="889" cy="610" r="78" fill="#000"/>
+    <circle cx="879" cy="617" r="44" fill="#fff"/>
+    <circle cx="697" cy="720" r="202" fill="#000"/>
+    <circle cx="697" cy="720" r="151" fill="#fff"/>
+    <circle cx="623" cy="716" r="25" fill="#000"/>
+    <circle cx="767" cy="716" r="25" fill="#000"/>
+    <ellipse cx="695" cy="764" rx="22" ry="14" fill="#000"/>
+    <path d="M651 799 Q696 833 740 800" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#fff" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M848 1083 L863 933 C866 910 884 895 907 895 H1038 C1066 895 1086 917 1086 950 C1086 981 1067 1000 1038 1000 H1015 V1085"/>
+      <path d="M1036 913 C1054 913 1065 926 1065 945 C1065 964 1052 977 1034 977 H1016" fill="none"/>
+      <path d="M833 1082 H992 C1011 1082 1023 1097 1021 1114 C1019 1130 1005 1140 986 1140 H833 C813 1140 799 1127 799 1108 C799 1093 813 1082 833 1082Z"/>
+      <line x1="833" y1="1082" x2="992" y2="1082"/>
     </g>
-    <circle cx="374" cy="526" r="66" fill="#050505"/>
-    <circle cx="374" cy="526" r="40" fill="#fffdf7"/>
-    <circle cx="650" cy="526" r="66" fill="#050505"/>
-    <circle cx="650" cy="526" r="40" fill="#fffdf7"/>
-    <circle cx="512" cy="584" r="164" fill="#050505"/>
-    <circle cx="512" cy="574" r="112" fill="#fffdf7"/>
-    <circle cx="456" cy="548" r="22" fill="#050505"/>
-    <circle cx="568" cy="548" r="22" fill="#050505"/>
-    <ellipse cx="512" cy="592" rx="24" ry="15" fill="#050505"/>
-    <path d="M462 634c33 36 68 36 101 0" fill="none" stroke="#050505" stroke-width="15" stroke-linecap="round"/>
-    <path d="M616 612c93 38 137 101 132 188" fill="none" stroke="#050505" stroke-width="72" stroke-linecap="round"/>
-    <g fill="#fffdf7" stroke="#050505" stroke-width="22" stroke-linejoin="round">
-      <path d="M656 698h154c22 0 40 18 40 40v94c0 24-19 43-43 43H657z"/>
-      <path d="M656 875h150c-18 0-32-15-32-33s14-33 32-33H654z"/>
-      <path d="M809 698c35 0 58 27 58 59s-22 58-52 58h-32v-51h30c11 0 20-9 20-20s-9-20-20-20h-32z"/>
-    </g>
-    <circle cx="742" cy="785" r="41" fill="#f28c0f"/>
-  </g>
-  <text x="276" y="188" font-size="82" font-family="Georgia, serif" font-weight="900" fill="#151511">Mainline</text>
-  <text x="106" y="332" font-size="70" font-family="Helvetica Neue, Arial, sans-serif" font-weight="900" fill="#151511">Repo memory</text>
-  <text x="106" y="414" font-size="70" font-family="Helvetica Neue, Arial, sans-serif" font-weight="900" fill="#151511">before the diff</text>
-  <text x="106" y="486" font-size="32" font-family="Helvetica Neue, Arial, sans-serif" fill="#5f6258">Git-native memory for coding agents.</text>
-  <rect x="780" y="134" width="280" height="300" rx="12" fill="#191b18" stroke="#151511" stroke-width="5"/>
-  <text x="812" y="190" font-size="23" font-family="Menlo, monospace" fill="#d7f7e9">$ mainline context</text>
-  <text x="812" y="252" font-size="24" font-family="Menlo, monospace" fill="#00a878">prior intent</text>
-  <text x="812" y="314" font-size="24" font-family="Menlo, monospace" fill="#f28c0f">risks</text>
-  <text x="812" y="376" font-size="24" font-family="Menlo, monospace" fill="#3aa6b9">constraints</text>
-  <rect x="822" y="452" width="264" height="72" rx="10" fill="#f28c0f" stroke="#151511" stroke-width="5"/>
-  <text x="954" y="499" text-anchor="middle" font-size="28" font-family="Helvetica Neue, Arial, sans-serif" font-weight="900" fill="#151511">before edits</text>
+    <circle cx="945" cy="1021" r="43" fill="#ff8700"/>
+    <path d="M604 362 C604 327 627 303 655 309 C669 293 696 293 711 310 C733 303 763 316 775 340 C795 343 807 361 804 382 C801 401 779 411 758 401 C746 416 722 416 708 402 C693 419 668 416 656 400 C631 408 608 391 604 362Z" fill="#000"/>
+    <rect x="622" y="323" width="34" height="63" rx="17" fill="#fff"/>
+    <rect x="671" y="318" width="34" height="73" rx="17" fill="#fff"/>
+    <rect x="719" y="324" width="34" height="66" rx="17" fill="#fff"/>
+    <rect x="760" y="340" width="26" height="48" rx="13" fill="#fff"/>
+  </svg>
+  <text x="260" y="214" font-size="88" font-family="Georgia, serif" font-weight="900" fill="#151511">Mainline</text>
+  <text x="106" y="326" font-size="72" font-family="Helvetica Neue, Arial, sans-serif" font-weight="900" fill="#151511">Repo memory</text>
+  <text x="106" y="408" font-size="72" font-family="Helvetica Neue, Arial, sans-serif" font-weight="900" fill="#151511">before the diff</text>
+  <text x="106" y="490" font-size="32" font-family="Helvetica Neue, Arial, sans-serif" fill="#5f6258">Git-native memory for coding agents.</text>
+  <rect x="782" y="136" width="282" height="302" rx="12" fill="#191b18" stroke="#151511" stroke-width="5"/>
+  <text x="814" y="192" font-size="23" font-family="Menlo, monospace" fill="#d7f7e9">$ mainline context</text>
+  <text x="814" y="256" font-size="24" font-family="Menlo, monospace" fill="#00a878">prior intent</text>
+  <text x="814" y="320" font-size="24" font-family="Menlo, monospace" fill="#ff9b1f">risks</text>
+  <text x="814" y="384" font-size="24" font-family="Menlo, monospace" fill="#3aa6b9">constraints</text>
+  <rect x="824" y="454" width="264" height="72" rx="10" fill="#ff9b1f" stroke="#151511" stroke-width="5"/>
+  <text x="956" y="501" text-anchor="middle" font-size="28" font-family="Helvetica Neue, Arial, sans-serif" font-weight="900" fill="#151511">before edits</text>
 </svg>

@@ -1,29 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Mainline">
-  <rect width="1024" height="1024" fill="#fffdf7"/>
-  <rect x="232" y="260" width="560" height="52" rx="26" fill="#050505"/>
-  <path d="M506 298c-70 72-106 141-96 221" fill="none" stroke="#050505" stroke-width="78" stroke-linecap="round"/>
-  <path d="M478 236c25-26 68-26 94 0 25-18 64-12 82 14 22 30 12 73-22 90-22 11-48 7-66-8-26 23-68 22-92-2-21 19-56 20-78 3-30-24-29-70 1-94 23-18 57-19 81-3z" fill="#050505"/>
-  <g fill="#fffdf7" stroke="#050505" stroke-width="14" stroke-linecap="round">
-    <path d="M454 256v52"/>
-    <path d="M500 246v64"/>
-    <path d="M548 246v64"/>
-    <path d="M596 258v52"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="230 260 940 940" role="img" aria-labelledby="title desc">
+  <title id="title">Monkey hanging mark</title>
+  <desc id="desc">Transparent vector mark of a black monkey hanging from a bar with a small scroll and orange seal.</desc>
+  <!-- bar and limbs -->
+  <line x1="335" y1="358" x2="1075" y2="358" stroke="#000" stroke-width="56" stroke-linecap="round"/>
+  <path d="M655 358 C610 425 576 496 591 580" fill="none" stroke="#000" stroke-width="88" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M842 740 C949 782 1006 862 1001 947" fill="none" stroke="#000" stroke-width="84" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ears and head -->
+  <circle cx="506" cy="610" r="78" fill="#000"/>
+  <circle cx="515" cy="617" r="44" fill="#fff"/>
+  <circle cx="889" cy="610" r="78" fill="#000"/>
+  <circle cx="879" cy="617" r="44" fill="#fff"/>
+  <circle cx="697" cy="720" r="202" fill="#000"/>
+  <circle cx="697" cy="720" r="151" fill="#fff"/>
+
+  <!-- face -->
+  <circle cx="623" cy="716" r="25" fill="#000"/>
+  <circle cx="767" cy="716" r="25" fill="#000"/>
+  <ellipse cx="695" cy="764" rx="22" ry="14" fill="#000"/>
+  <path d="M651 799 Q696 833 740 800" fill="none" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- scroll -->
+  <g fill="#fff" stroke="#000" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M848 1083 L863 933 C866 910 884 895 907 895 H1038 C1066 895 1086 917 1086 950 C1086 981 1067 1000 1038 1000 H1015 V1085"/>
+    <path d="M1036 913 C1054 913 1065 926 1065 945 C1065 964 1052 977 1034 977 H1016" fill="none"/>
+    <path d="M833 1082 H992 C1011 1082 1023 1097 1021 1114 C1019 1130 1005 1140 986 1140 H833 C813 1140 799 1127 799 1108 C799 1093 813 1082 833 1082Z"/>
+    <line x1="833" y1="1082" x2="992" y2="1082"/>
   </g>
-  <circle cx="374" cy="526" r="66" fill="#050505"/>
-  <circle cx="374" cy="526" r="40" fill="#fffdf7"/>
-  <circle cx="650" cy="526" r="66" fill="#050505"/>
-  <circle cx="650" cy="526" r="40" fill="#fffdf7"/>
-  <circle cx="512" cy="584" r="164" fill="#050505"/>
-  <circle cx="512" cy="574" r="112" fill="#fffdf7"/>
-  <circle cx="456" cy="548" r="22" fill="#050505"/>
-  <circle cx="568" cy="548" r="22" fill="#050505"/>
-  <ellipse cx="512" cy="592" rx="24" ry="15" fill="#050505"/>
-  <path d="M462 634c33 36 68 36 101 0" fill="none" stroke="#050505" stroke-width="15" stroke-linecap="round"/>
-  <path d="M616 612c93 38 137 101 132 188" fill="none" stroke="#050505" stroke-width="72" stroke-linecap="round"/>
-  <g fill="#fffdf7" stroke="#050505" stroke-width="22" stroke-linejoin="round">
-    <path d="M656 698h154c22 0 40 18 40 40v94c0 24-19 43-43 43H657z"/>
-    <path d="M656 875h150c-18 0-32-15-32-33s14-33 32-33H654z"/>
-    <path d="M809 698c35 0 58 27 58 59s-22 58-52 58h-32v-51h30c11 0 20-9 20-20s-9-20-20-20h-32z"/>
-  </g>
-  <circle cx="742" cy="785" r="41" fill="#f28c0f"/>
+  <circle cx="945" cy="1021" r="43" fill="#ff8700"/>
+
+  <!-- hand on top of the bar -->
+  <path d="M604 362 C604 327 627 303 655 309 C669 293 696 293 711 310 C733 303 763 316 775 340 C795 343 807 361 804 382 C801 401 779 411 758 401 C746 416 722 416 708 402 C693 419 668 416 656 400 C631 408 608 391 604 362Z" fill="#000"/>
+  <rect x="622" y="323" width="34" height="63" rx="17" fill="#fff"/>
+  <rect x="671" y="318" width="34" height="73" rx="17" fill="#fff"/>
+  <rect x="719" y="324" width="34" height="66" rx="17" fill="#fff"/>
+  <rect x="760" y="340" width="26" height="48" rx="13" fill="#fff"/>
 </svg>
