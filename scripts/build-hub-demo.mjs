@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -69,6 +69,29 @@ function compareSemver(left, right) {
   return 0;
 }
 
+function validateExportedHub() {
+  const intentsPath = join(outputDir, "data", "intents.json");
+  if (!existsSync(intentsPath)) {
+    if (hubRequired) {
+      fail(`missing Hub data file: ${intentsPath}`);
+    }
+    return;
+  }
+
+  const parsed = JSON.parse(readFileSync(intentsPath, "utf8"));
+  const intents = Array.isArray(parsed) ? parsed : parsed.intents ?? [];
+  const statusCounts = intents.reduce((counts, intent) => {
+    const status = intent.status ?? "unknown";
+    counts[status] = (counts[status] ?? 0) + 1;
+    return counts;
+  }, {});
+
+  console.log(`[mainline-hub] exported intent statuses: ${JSON.stringify(statusCounts)}`);
+  if (hubRequired && intents.length > 0 && !statusCounts.merged) {
+    fail("Hub export produced zero merged intents; check that the Mainline source clone has full commit history");
+  }
+}
+
 if (process.env.MAINLINE_BUILD_HUB !== "1") {
   process.exit(0);
 }
@@ -86,7 +109,7 @@ try {
 
   if (!providedSource) {
     const cloned = runStep(
-      `git clone --depth=1 --filter=blob:none https://github.com/mainline-org/mainline.git ${quote(sourceDir)}`,
+      `git clone --config gc.auto=0 https://github.com/mainline-org/mainline.git ${quote(sourceDir)}`,
       { label: "clone mainline source" },
     );
     if (!cloned) {
@@ -141,6 +164,7 @@ try {
   if (!exportOK) {
     rmSync(outputDir, { recursive: true, force: true });
   }
+  validateExportedHub();
 } finally {
   if (!providedSource) {
     rmSync(workDir, { recursive: true, force: true });
