@@ -540,46 +540,40 @@ h1 {
   text-transform: uppercase;
 }
 
-.self-hub-hotfiles,
+.self-hub-insights,
 .self-hub-empty {
   padding: 20px;
 }
 
-.self-hub-hotfiles h3 {
+.self-hub-insights h3 {
   margin-bottom: 14px;
   font-size: 0.84rem;
   text-transform: uppercase;
 }
 
-.self-hub-hotfiles ol {
+.self-hub-insights > div {
   display: grid;
   gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
-.self-hub-hotfiles li {
+.self-hub-insights article {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
-  align-items: center;
+  gap: 4px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 10px;
 }
 
-.self-hub-hotfiles li:last-child {
+.self-hub-insights article:last-child {
   border-bottom: 0;
   padding-bottom: 0;
 }
 
-.self-hub-hotfiles code {
-  overflow-wrap: anywhere;
+.self-hub-insights article > span {
   color: var(--charcoal);
-  font-size: 0.86rem;
+  font-weight: 900;
 }
 
-.self-hub-hotfiles span,
+.self-hub-insights p,
 .self-hub-empty p {
   color: var(--muted);
 }
@@ -1242,11 +1236,6 @@ html:lang(zh-CN) .article-body {
 
   .self-hub-stats > div:last-child {
     border-bottom: 0;
-  }
-
-  .self-hub-hotfiles li {
-    grid-template-columns: 1fr;
-    gap: 4px;
   }
 
   .seo-grid article.wide {

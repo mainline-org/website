@@ -23,6 +23,23 @@ const generatedAt = hubSnapshot
       timeZone: "UTC",
     }).format(new Date(hubSnapshot.generatedAt))
   : "";
+const formatInsight = (template: string, count: number) => template.replace("{count}", String(count));
+const hubInsights = hubSnapshot
+  ? [
+      {
+        label: t.selfHub.insights.decisions.label,
+        text: formatInsight(t.selfHub.insights.decisions.text, hubSnapshot.mergedIntents),
+      },
+      {
+        label: t.selfHub.insights.constraints.label,
+        text: formatInsight(t.selfHub.insights.constraints.text, hubSnapshot.riskIntents),
+      },
+      {
+        label: t.selfHub.insights.work.label,
+        text: formatInsight(t.selfHub.insights.work.text, hubSnapshot.proposedIntents),
+      },
+    ]
+  : [];
 const pageJsonLd = webPageJsonLd({
   title: t.metaTitle,
   description: t.metaDescription,
@@ -114,19 +131,17 @@ const pageJsonLd = webPageJsonLd({
               <div><strong>{hubSnapshot.fileCount}</strong><span>{t.selfHub.stats.files}</span></div>
               <div><strong>{hubSnapshot.actorCount}</strong><span>{t.selfHub.stats.actors}</span></div>
             </div>
-            {hubSnapshot.hotFiles.length > 0 && (
-              <div class="self-hub-hotfiles">
-                <h3>{t.selfHub.hotFiles}</h3>
-                <ol>
-                  {hubSnapshot.hotFiles.map((file) => (
-                    <li>
-                      <code>{file.path}</code>
-                      <span>{file.intentCount} {t.selfHub.intentLabel}</span>
-                    </li>
-                  ))}
-                </ol>
+            <div class="self-hub-insights">
+              <h3>{t.selfHub.insights.heading}</h3>
+              <div>
+                {hubInsights.map((item) => (
+                  <article>
+                    <span>{item.label}</span>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
               </div>
-            )}
+            </div>
           </>
         ) : (
           <div class="self-hub-empty">

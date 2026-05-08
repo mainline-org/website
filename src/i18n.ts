@@ -208,8 +208,21 @@ export const homeCopy = {
       updated: "Updated",
       pendingLabel: "Waiting for CI export",
       pendingText: "The homepage still builds without Hub data. The live dashboard appears after the scheduled export writes public/hub/data/intents.json.",
-      hotFiles: "Hot files",
-      intentLabel: "intents",
+      insights: {
+        heading: "What the Hub helps you see",
+        decisions: {
+          label: "Historical decisions",
+          text: "{count} merged intents explain why the code became what it is now.",
+        },
+        constraints: {
+          label: "Risks and constraints",
+          text: "{count} risk and constraint signals help agents avoid known traps before editing.",
+        },
+        work: {
+          label: "Work in progress",
+          text: "{count} proposed intents show what the team and agents are currently moving forward.",
+        },
+      },
       stats: {
         intents: "intents",
         proposed: "proposed",
@@ -331,8 +344,21 @@ export const homeCopy = {
       updated: "更新时间",
       pendingLabel: "等待 CI 导出",
       pendingText: "即使本地没有 Hub 数据，首页也可以正常构建。定时任务写入 public/hub/data/intents.json 后，这里会显示真实 dashboard。",
-      hotFiles: "高频文件",
-      intentLabel: "个 intents",
+      insights: {
+        heading: "Hub 会帮你看到什么",
+        decisions: {
+          label: "历史决策",
+          text: "{count} 个已合并 intent，说明代码为什么变成现在这样。",
+        },
+        constraints: {
+          label: "风险与约束",
+          text: "{count} 条风险/约束，提醒 agent 改动前先避开旧坑。",
+        },
+        work: {
+          label: "正在进行的工作",
+          text: "{count} 个 proposed intent，展示团队和 agent 当前在推进什么。",
+        },
+      },
       stats: {
         intents: "intents",
         proposed: "proposed",
@@ -454,8 +480,21 @@ export const homeCopy = {
       updated: "Actualizado",
       pendingLabel: "Esperando export de CI",
       pendingText: "La homepage sigue compilando sin datos del Hub. El dashboard aparece cuando el job programado escribe public/hub/data/intents.json.",
-      hotFiles: "Hot files",
-      intentLabel: "intents",
+      insights: {
+        heading: "Qué te ayuda a ver el Hub",
+        decisions: {
+          label: "Decisiones históricas",
+          text: "{count} intents merged explican por qué el código llegó a su estado actual.",
+        },
+        constraints: {
+          label: "Riesgos y restricciones",
+          text: "{count} señales de riesgo y restricciones ayudan a los agentes a evitar trampas conocidas antes de editar.",
+        },
+        work: {
+          label: "Trabajo en curso",
+          text: "{count} intents proposed muestran qué están moviendo ahora el equipo y los agentes.",
+        },
+      },
       stats: {
         intents: "intents",
         proposed: "proposed",
