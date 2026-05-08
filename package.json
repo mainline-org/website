@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "build:vercel": "MAINLINE_BUILD_HUB=1 MAINLINE_HUB_REQUIRED=1 MAINLINE_MIN_VERSION=v0.4.3 node scripts/build-hub-demo.mjs && npm run build",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "indexnow:dry": "node scripts/submit-indexnow.mjs --dry-run",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview"

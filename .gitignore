@@ -3,4 +3,5 @@
 .vercel/
 dist/
 node_modules/
+public/hub/
 npm-debug.log*
