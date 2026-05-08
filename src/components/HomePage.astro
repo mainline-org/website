@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { homeCopy, localizedPath, type Locale } from "../i18n";
+import { loadHubSnapshot } from "../hubSnapshot";
 import { organizationJsonLd, softwareJsonLd, webPageJsonLd, webSiteJsonLd } from "../structuredData";
 
 interface Props {
@@ -9,6 +10,19 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = homeCopy[locale];
+const hubSnapshot = loadHubSnapshot();
+const dateLocales: Record<Locale, string> = {
+  en: "en-US",
+  zh: "zh-CN",
+  es: "es-ES",
+};
+const generatedAt = hubSnapshot
+  ? new Intl.DateTimeFormat(dateLocales[locale], {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "UTC",
+    }).format(new Date(hubSnapshot.generatedAt))
+  : "";
 const pageJsonLd = webPageJsonLd({
   title: t.metaTitle,
   description: t.metaDescription,
@@ -71,6 +85,56 @@ const pageJsonLd = webPageJsonLd({
           <p>{label}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <section class="section self-hub-band" aria-labelledby="self-hub-heading">
+    <div class="shell self-hub">
+      <div class="self-hub-copy">
+        <p class="eyebrow">{t.selfHub.eyebrow}</p>
+        <h2 id="self-hub-heading">{t.selfHub.heading}</h2>
+        <p>{t.selfHub.text}</p>
+        <div class="hero-actions">
+          <a class="button primary" href="/hub/">{t.selfHub.cta}</a>
+          <a class="button secondary" href="https://github.com/mainline-org/mainline">{t.selfHub.github}</a>
+        </div>
+      </div>
+      <div class="self-hub-panel" aria-label={t.selfHub.aria}>
+        {hubSnapshot ? (
+          <>
+            <div class="self-hub-status">
+              <span>{t.selfHub.live}</span>
+              <time datetime={hubSnapshot.generatedAt}>{t.selfHub.updated} {generatedAt} UTC</time>
+            </div>
+            <div class="self-hub-stats">
+              <div><strong>{hubSnapshot.totalIntents}</strong><span>{t.selfHub.stats.intents}</span></div>
+              <div><strong>{hubSnapshot.proposedIntents}</strong><span>{t.selfHub.stats.proposed}</span></div>
+              <div><strong>{hubSnapshot.mergedIntents}</strong><span>{t.selfHub.stats.merged}</span></div>
+              <div><strong>{hubSnapshot.riskIntents}</strong><span>{t.selfHub.stats.constraints}</span></div>
+              <div><strong>{hubSnapshot.fileCount}</strong><span>{t.selfHub.stats.files}</span></div>
+              <div><strong>{hubSnapshot.actorCount}</strong><span>{t.selfHub.stats.actors}</span></div>
+            </div>
+            {hubSnapshot.hotFiles.length > 0 && (
+              <div class="self-hub-hotfiles">
+                <h3>{t.selfHub.hotFiles}</h3>
+                <ol>
+                  {hubSnapshot.hotFiles.map((file) => (
+                    <li>
+                      <code>{file.path}</code>
+                      <span>{file.intentCount} {t.selfHub.intentLabel}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </>
+        ) : (
+          <div class="self-hub-empty">
+            <span>{t.selfHub.pendingLabel}</span>
+            <p>{t.selfHub.pendingText}</p>
+          </div>
+        )}
+      </div>
     </div>
   </section>
 
