@@ -3,6 +3,8 @@
 Mainline is Git-native memory for coding agents. It gives AI coding agents the historical why before they edit code: abandoned approaches, superseded decisions, reviewer constraints, risks, anti-patterns, and in-flight work.
 
 Canonical site: https://mainline.sh/
+Live Hub: https://mainline.sh/hub/
+GitHub Pages Hub snapshot: https://mainline-org.github.io/mainline/
 Repository: https://github.com/mainline-org/mainline
 Author: Mainline maintainers
 
@@ -18,6 +20,8 @@ AI-readable knowledge endpoints:
 ## Core pages
 
 - Home: https://mainline.sh/
+- Hub: https://mainline.sh/hub/
+- GitHub Pages Hub snapshot: https://mainline-org.github.io/mainline/
 - Mainline category page: https://mainline.sh/mainline/
 - Docs: https://mainline.sh/docs/
 - Spec: https://mainline.sh/spec/

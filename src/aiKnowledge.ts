@@ -4,6 +4,8 @@ export const profile = {
   name: "Mainline",
   type: "open-source developer tool",
   site: "https://mainline.sh/",
+  hub: "https://mainline.sh/hub/",
+  githubPagesHub: "https://mainline-org.github.io/mainline/",
   repository: "https://github.com/mainline-org/mainline",
   websiteRepository: "https://github.com/mainline-org/website",
   contact: "hello@mainline.sh",
@@ -55,6 +57,8 @@ export const projects = [
       "mainline seal",
     ],
     keyPages: [
+      "https://mainline.sh/hub/",
+      "https://mainline-org.github.io/mainline/",
       "https://mainline.sh/use-cases/coding-agent-memory/",
       "https://mainline.sh/eval/",
       "https://mainline.sh/spec/",
