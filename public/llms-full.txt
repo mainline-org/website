@@ -6,7 +6,6 @@ Coding agents can read code. They cannot read why. Mainline gives AI coding agen
 
 Canonical site: https://mainline.sh/
 Live Hub: https://mainline.sh/hub/
-GitHub Pages Hub snapshot: https://mainline-org.github.io/mainline/
 Repository: https://github.com/mainline-org/mainline
 Author: Mainline maintainers
 
@@ -81,7 +80,6 @@ Mainline complements those tools by preserving the durable engineering intent fu
 
 - Home: https://mainline.sh/
 - Hub: https://mainline.sh/hub/
-- GitHub Pages Hub snapshot: https://mainline-org.github.io/mainline/
 - Mainline category page: https://mainline.sh/mainline/
 - What is coding agent memory?: https://mainline.sh/use-cases/coding-agent-memory/
 - Repo memory for AI agents: https://mainline.sh/use-cases/repo-memory-for-ai-agents/

@@ -2,7 +2,6 @@
 
 * Website: https://mainline.sh
 * Hub: https://mainline.sh/hub
-* GitHub Pages Hub snapshot: https://mainline-org.github.io/mainline/
 * Essay: https://mainline.sh/blog/why-coding-agents-need-repo-memory
 * Spec: https://mainline.sh/spec
 
